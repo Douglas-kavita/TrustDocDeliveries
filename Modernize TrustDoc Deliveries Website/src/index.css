@@ -1830,3 +1830,27 @@ footer small {
 .page-overview__card{cursor:default}
 .page-overview__card span{margin-top:0}
 @media(max-width:600px){.detail-grid{grid-template-columns:1fr}.detail-panel{padding:20px}}
+
+
+/* Sign-in and floating client-to-staff support */
+.signin-link{border:0;padding:8px 4px;color:var(--maroon);background:transparent;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+.signin-link:hover{color:#a20b3c}
+.signin-notice{margin-top:24px;padding:20px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.signin-notice strong{color:var(--maroon)}
+.signin-notice p{margin:10px 0 18px;color:var(--muted);font-size:12px;line-height:1.7}
+.staff-chat-launch{position:fixed;right:26px;bottom:25px;z-index:80;width:76px;height:76px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:3px solid rgba(255,255,255,.9);border-radius:50%;color:#fff;background:var(--maroon);box-shadow:0 12px 35px rgba(55,0,18,.3);cursor:pointer;transition:transform .2s,box-shadow .2s}
+.staff-chat-launch:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(55,0,18,.38)}
+.staff-chat-launch span{font-size:25px;line-height:1}
+.staff-chat-launch small{font-size:8px;font-weight:800;letter-spacing:.02em}
+.staff-chat{position:fixed;right:26px;bottom:116px;z-index:81;width:min(360px,calc(100vw - 32px));overflow:hidden;border:1px solid rgba(102,2,31,.14);border-radius:22px;background:#fffaf4;box-shadow:0 22px 65px rgba(32,0,12,.24);animation:modalIn .22s ease both}
+.staff-chat__head{display:flex;align-items:center;justify-content:space-between;padding:17px 20px;color:#fff;background:var(--maroon)}
+.staff-chat__head b,.staff-chat__head small{display:block}
+.staff-chat__head b{font-size:13px}
+.staff-chat__head small{margin-top:4px;color:rgba(255,255,255,.7);font-size:10px}
+.staff-chat__head button{width:30px;height:30px;border:0;border-radius:50%;color:#fff;background:rgba(255,255,255,.14);font-size:22px;cursor:pointer}
+.staff-chat__body{display:grid;gap:14px;padding:20px}
+.staff-chat__body>p{color:var(--ink);font-size:12px;line-height:1.7}
+.staff-chat__body textarea{min-height:110px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--ink);background:white;font:inherit;font-size:12px}
+.staff-chat__welcome{padding:12px;border-radius:12px;background:#f6eee8}
+.staff-chat__notice{color:var(--muted);font-size:10px;line-height:1.5}
+@media(max-width:560px){.staff-chat-launch{right:16px;bottom:16px;width:68px;height:68px}.staff-chat{right:16px;bottom:98px}}
