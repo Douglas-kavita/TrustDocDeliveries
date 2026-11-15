@@ -374,7 +374,11 @@ function App() {
             ))}
           </nav>
           <div className="nav-actions">
-            {clientAuthenticated ? (
+            {agentAuthenticated ? (
+              <button type="button" className="client-profile-shortcut agent-profile-shortcut" onClick={() => { window.history.pushState({}, "", "/agent"); window.location.href = "/agent"; }} aria-label="Open your agent profile and workspace" title="Agent profile">
+                <span>DO</span>
+              </button>
+            ) : clientAuthenticated ? (
               <button type="button" className="client-profile-shortcut" onClick={() => { window.history.pushState({}, "", "/client"); setClientPortalOpen(true); }} aria-label="Open your client profile and portal" title="My client portal">
                 <span>AW</span>
               </button>
@@ -397,7 +401,7 @@ function App() {
                   {label}
                 </a>
               ))}
-              {clientAuthenticated ? <button className="mobile-profile-link" onClick={() => { setMenuOpen(false); window.history.pushState({}, "", "/client"); setClientPortalOpen(true); }}>My profile · Client portal</button> : <><button type="button" onClick={openSignIn}>Sign in</button><button onClick={openRegister}>Register free</button></>}
+              {agentAuthenticated ? <button className="mobile-profile-link" onClick={() => { setMenuOpen(false); window.location.href = "/agent"; }}>My profile · Agent workspace</button> : clientAuthenticated ? <button className="mobile-profile-link" onClick={() => { setMenuOpen(false); window.history.pushState({}, "", "/client"); setClientPortalOpen(true); }}>My profile · Client portal</button> : <><button type="button" onClick={openSignIn}>Sign in</button><button onClick={openRegister}>Register free</button></>}
             </div>
           )}
         </div>
