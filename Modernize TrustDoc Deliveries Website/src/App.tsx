@@ -366,7 +366,7 @@ function App() {
           </div>
         </section>
 
-        {currentPage === "/" && <section className="page-overview section-pad"><div className="section-shell"><div className="section-heading center-heading"><p className="eyebrow">Explore TrustDoc</p><h2>Everything you need, in one place.</h2></div><div className="page-overview__grid">{[["How it works","/how-it-works","Understand each step from registration to verified handover."],["Tracking","/tracking","Follow your document journey and key delivery milestones."],["Locations","/locations","Check service-area announcements and coverage updates."],["Plans","/plans","See the free registration and monitoring offer, plus delivery fees."],["Clients","/clients","Learn about secure recipient checks and handover."],["Careers","/careers","Explore Agent and Rider opportunities."]].map(([title,url,copy])=><a className="page-overview__card" href={url} key={url}><h3>{title}</h3><p>{copy}</p><span>Explore page →</span></a>)}</div></div></section>}
+        {currentPage === "/" && <section className="page-overview section-pad"><div className="section-shell"><div className="section-heading center-heading"><p className="eyebrow">Explore TrustDoc</p><h2>Everything you need, in one place.</h2><p>Quick summaries of every part of the service. Read the full details in each section below.</p></div><div className="page-overview__grid">{[["01","How it works","Understand the steps from free registration to secure, verified handover."],["02","Supported Locations","See where collection and delivery services are currently supported."],["03","Tracking","Understand the updates and milestones that keep you informed."],["04","Simple pricing","Compare free monitoring with standard and doorstep delivery."],["05","For clients","Learn how the private code protects the recipient at handover."],["06","Careers","Explore opportunities for TrustDoc agents and delivery riders."]].map(([number,title,copy])=><article className="page-overview__card" key={title}><span className="overview-number">{number}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>}
         <section className="process section-pad" id="how-it-works" data-page-section="how-it-works">
           <div className="section-shell">
             <div className="section-heading split-heading">
@@ -426,6 +426,7 @@ function App() {
           </div>
         </section>
 
+        <div className="section-explore"><a className="button button--secondary" href="/how-it-works">Explore How it works <Icon name="arrow" /></a></div>
         <section className="security section-pad" id="tracking" data-page-section="tracking">
           <div className="section-shell security__grid">
             <div className="security__visual">
@@ -516,8 +517,10 @@ function App() {
               </article>
             </div>
           </div>
-        </section>
+<div className="section-explore"><a className="button button--secondary" href="/tracking">Explore Tracking <Icon name="arrow" /></a></div>
+                </section>
 
+        <div className="section-explore"><a className="button button--secondary" href="/tracking">Explore Tracking <Icon name="arrow" /></a></div>
         <section className="clients section-pad" id="clients" data-page-section="clients">
           <div className="section-shell clients__grid">
             <div>
@@ -588,7 +591,8 @@ function App() {
               </p>
             </div>
           </div>
-        </section>
+<div className="section-explore"><a className="button button--secondary" href="/clients">Explore Clients <Icon name="arrow" /></a></div>
+                </section>
 
         <section className="locations section-pad" id="locations" data-page-section="locations">
           <div className="section-shell">
@@ -627,7 +631,8 @@ function App() {
             </div>
             <div className="section-explore"><a className="button button--secondary button--light" href="/locations">Explore Locations <Icon name="arrow" /></a></div>
           </div>
-        </section>
+<div className="section-explore"><a className="button button--secondary button--light" href="/locations">Explore Supported Locations <Icon name="arrow" /></a></div>
+                </section>
 
         <section className="careers section-pad" id="careers" data-page-section="careers">
           <div className="section-shell">
@@ -706,7 +711,8 @@ function App() {
             </div>
             <div className="section-explore"><a className="button button--secondary" href="/careers">Explore Careers <Icon name="arrow" /></a></div>
           </div>
-        </section>
+<div className="section-explore"><a className="button button--secondary" href="/careers">Explore Careers <Icon name="arrow" /></a></div>
+                </section>
 
         <section className="cta">
           <div className="section-shell cta__inner">
