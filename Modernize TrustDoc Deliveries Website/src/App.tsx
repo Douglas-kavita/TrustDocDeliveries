@@ -14,7 +14,7 @@ const heroSlides = [
   { src: riderPhoto, alt: "A delivery motorcycle ready for a journey", label: "Secure delivery" },
 ];
 
-const navItems = [["Home", "/"], ["How it works", "/how-it-works"], ["Tracking", "/tracking"], ["Locations", "/locations"], ["Clients", "/clients"], ["Careers", "/careers"]];
+const navItems = [["Home", "/"], ["How it works", "/how-it-works"], ["Tracking", "/tracking"], ["Locations", "/locations"], ["Plans", "/plans"], ["Clients", "/clients"], ["Careers", "/careers"]];
 
 const steps = [
   {
@@ -222,7 +222,7 @@ function RegisterModal({ onClose }: { onClose: () => void }) {
 
 function App() {
   const currentPage = window.location.pathname.replace(/\/$/, "") || "/";
-  const pageMap: Record<string, string> = { "/how-it-works": "how-it-works", "/tracking": "tracking", "/locations": "locations", "/clients": "clients", "/careers": "careers" };
+  const pageMap: Record<string, string> = { "/how-it-works": "how-it-works", "/tracking": "tracking", "/locations": "locations", "/plans": "plans", "/clients": "clients", "/careers": "careers" };
   const [modalOpen, setModalOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
@@ -273,7 +273,7 @@ function App() {
           {menuOpen && (
             <div className="mobile-nav">
               {navItems.map(([label, id]) => (
-                <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}>
+                <a key={id} href={id} onClick={() => setMenuOpen(false)}>
                   {label}
                 </a>
               ))}
@@ -366,7 +366,7 @@ function App() {
           </div>
         </section>
 
-        {currentPage === "/" && <section className="page-overview section-pad"><div className="section-shell"><div className="section-heading center-heading"><p className="eyebrow">Explore TrustDoc</p><h2>Everything you need, in one place.</h2></div><div className="page-overview__grid">{[["How it works","/how-it-works","Understand each step from registration to verified handover."],["Tracking","/tracking","Follow your document journey and key delivery milestones."],["Locations","/locations","Check service-area announcements and coverage updates."],["Clients","/clients","Learn about secure recipient checks and handover."],["Careers","/careers","Explore Agent and Rider opportunities."]].map(([title,url,copy])=><a className="page-overview__card" href={url} key={url}><h3>{title}</h3><p>{copy}</p><span>Explore page →</span></a>)}</div></div></section>}
+        {currentPage === "/" && <section className="page-overview section-pad"><div className="section-shell"><div className="section-heading center-heading"><p className="eyebrow">Explore TrustDoc</p><h2>Everything you need, in one place.</h2></div><div className="page-overview__grid">{[["How it works","/how-it-works","Understand each step from registration to verified handover."],["Tracking","/tracking","Follow your document journey and key delivery milestones."],["Locations","/locations","Check service-area announcements and coverage updates."],["Plans","/plans","See the free registration and monitoring offer, plus delivery fees."],["Clients","/clients","Learn about secure recipient checks and handover."],["Careers","/careers","Explore Agent and Rider opportunities."]].map(([title,url,copy])=><a className="page-overview__card" href={url} key={url}><h3>{title}</h3><p>{copy}</p><span>Explore page →</span></a>)}</div></div></section>}
         <section className="process section-pad" id="how-it-works" data-page-section="how-it-works">
           <div className="section-shell">
             <div className="section-heading split-heading">
@@ -476,7 +476,7 @@ function App() {
           </div>
         </section>
 
-        <section className="options section-pad">
+        <section className="options section-pad" id="plans" data-page-section="plans">
           <div className="section-shell">
             <div className="section-heading center-heading">
               <p className="eyebrow">03 / Simple pricing</p>
