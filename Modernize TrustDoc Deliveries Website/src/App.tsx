@@ -231,6 +231,7 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
+  const [heroSlide, setHeroSlide] = useState(0);
 
   useEffect(() => {
     const timer = window.setInterval(
