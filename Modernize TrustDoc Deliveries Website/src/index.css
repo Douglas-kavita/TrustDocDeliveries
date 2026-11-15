@@ -1921,3 +1921,27 @@ footer small {
 
 /* Signed-in client shortcut in the main site header */
 .client-profile-shortcut{width:44px;height:44px;display:grid;place-items:center;padding:3px;border:2px solid #d8b66d;border-radius:50%;background:linear-gradient(145deg,#fff,#f5e8dc);box-shadow:0 4px 14px rgba(75,0,25,.14);cursor:pointer;transition:transform .2s,box-shadow .2s}.client-profile-shortcut:hover{transform:translateY(-2px);box-shadow:0 7px 18px rgba(75,0,25,.2)}.client-profile-shortcut span{width:100%;height:100%;display:grid;place-items:center;border-radius:50%;color:#fff;background:linear-gradient(145deg,#850b35,#4e001b);font-size:12px;font-weight:900;letter-spacing:.03em}.mobile-profile-link{color:var(--maroon);font-weight:800}
+
+
+/* TrustDoc Agent Portal */
+.agent-portal .client-sidebar nav{gap:6px}
+.agent-portal .client-main{max-width:1450px}
+.agent-portal .client-welcome{background:linear-gradient(115deg,#430016,#780629 66%,#310311)}
+.agent-portal .client-welcome h2 em{color:#e8c477}
+.agent-wide{max-width:none}
+.agent-task{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:19px 0;border-top:1px solid var(--line)}
+.agent-task b{color:var(--maroon);font-size:12px}
+.agent-task p{margin-top:6px;color:var(--ink);font-size:11px}
+.agent-task small{display:block;margin-top:5px;color:var(--muted);font-size:10px}
+.agent-task select{min-width:190px;padding:11px 13px;border:1px solid var(--line);border-radius:10px;color:var(--maroon);background:#fff;font:inherit;font-size:11px;font-weight:700}
+.agent-shield{padding:10px 15px;border:1px solid rgba(232,196,119,.45);border-radius:8px;color:#f0cf8c;font-size:10px;font-weight:900;letter-spacing:.15em}
+.agent-demo-note{margin-top:22px;padding:12px 15px;border:1px dashed #d8c8bd;border-radius:10px;color:#88757a;background:#fff;font-size:10px;line-height:1.6}
+.agent-login-wrap{min-height:100vh;display:grid;place-items:center;padding:28px;background:radial-gradient(circle at 85% 15%,rgba(201,164,94,.18),transparent 28%),linear-gradient(135deg,#f7f2ed,#eee5df)}
+.agent-login-card{width:min(100%,460px);padding:38px;border:1px solid rgba(102,2,31,.12);border-radius:22px;background:#fff;box-shadow:0 24px 70px rgba(48,0,17,.12)}
+.agent-login-card .logo{margin-bottom:35px}
+.agent-login-card h1{margin:10px 0;color:var(--maroon);font-size:34px;letter-spacing:-.05em}
+.agent-login-card>p{margin-bottom:22px;color:var(--muted);font-size:12px}
+.agent-login-card .register-form{margin-top:22px}
+.agent-login-card .demo-credentials{margin-top:20px}
+.agent-back-link{display:inline-block;margin-top:22px;color:var(--maroon);font-size:11px;font-weight:800;text-decoration:none}
+@media(max-width:650px){.agent-login-card{padding:28px 20px}.agent-task{align-items:flex-start;flex-direction:column}.agent-task select{width:100%}}
