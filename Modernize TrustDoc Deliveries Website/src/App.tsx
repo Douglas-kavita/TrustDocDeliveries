@@ -14,14 +14,7 @@ const heroSlides = [
   { src: riderPhoto, alt: "A delivery motorcycle ready for a journey", label: "Secure delivery" },
 ];
 
-const navItems = [
-  ["Home", "home"],
-  ["How it works", "how-it-works"],
-  ["Tracking", "tracking"],
-  ["Locations", "locations"],
-  ["Clients", "clients"],
-  ["Careers", "careers"],
-];
+const navItems = [["Home", "/"], ["How it works", "/how-it-works"], ["Tracking", "/tracking"], ["Locations", "/locations"], ["Clients", "/clients"], ["Careers", "/careers"]];
 
 const steps = [
   {
@@ -107,7 +100,7 @@ const Icon = ({
 function Logo({ light = false }: { light?: boolean }) {
   return (
     <a
-      href="#home"
+      href="/"
       className={`logo ${light ? "logo--light" : ""}`}
       aria-label="TrustDocDeliveries home"
     >
@@ -228,6 +221,8 @@ function RegisterModal({ onClose }: { onClose: () => void }) {
 }
 
 function App() {
+  const currentPage = window.location.pathname.replace(/\/$/, "") || "/";
+  const pageMap: Record<string, string> = { "/how-it-works": "how-it-works", "/tracking": "tracking", "/locations": "locations", "/clients": "clients", "/careers": "careers" };
   const [modalOpen, setModalOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
@@ -249,13 +244,13 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div className="app" data-page={pageMap[currentPage] || "home"}>
       <header className="site-header">
         <div className="nav-shell">
           <Logo />
           <nav className="desktop-nav" aria-label="Main navigation">
             {navItems.map(([label, id]) => (
-              <a key={id} href={`#${id}`}>
+              <a key={id} href={id}>
                 {label}
               </a>
             ))}
@@ -311,7 +306,7 @@ function App() {
                 <button className="button button--primary" onClick={openRegister}>
                   Register for free <Icon name="arrow" />
                 </button>
-                <a className="button button--secondary" href="#tracking">
+                <a className="button button--secondary" href="/tracking">
                   Track your delivery
                 </a>
               </div>
@@ -371,7 +366,8 @@ function App() {
           </div>
         </section>
 
-        <section className="process section-pad" id="how-it-works">
+        {currentPage === "/" && <section className="page-overview section-pad"><div className="section-shell"><div className="section-heading center-heading"><p className="eyebrow">Explore TrustDoc</p><h2>Everything you need, in one place.</h2></div><div className="page-overview__grid">{[["How it works","/how-it-works","Understand each step from registration to verified handover."],["Tracking","/tracking","Follow your document journey and key delivery milestones."],["Locations","/locations","Check service-area announcements and coverage updates."],["Clients","/clients","Learn about secure recipient checks and handover."],["Careers","/careers","Explore Agent and Rider opportunities."]].map(([title,url,copy])=><a className="page-overview__card" href={url} key={url}><h3>{title}</h3><p>{copy}</p><span>Explore page →</span></a>)}</div></div></section>}
+        <section className="process section-pad" id="how-it-works" data-page-section="how-it-works">
           <div className="section-shell">
             <div className="section-heading split-heading">
               <div>
@@ -430,7 +426,7 @@ function App() {
           </div>
         </section>
 
-        <section className="security section-pad" id="tracking">
+        <section className="security section-pad" id="tracking" data-page-section="tracking">
           <div className="section-shell security__grid">
             <div className="security__visual">
               <div className="envelope-card">
@@ -473,7 +469,7 @@ function App() {
                   </span>
                 </div>
               </div>
-              <a href="#clients" className="inline-link">
+              <a href="/clients" className="inline-link">
                 See how secure handover works <Icon name="arrow" />
               </a>
             </div>
@@ -523,7 +519,7 @@ function App() {
           </div>
         </section>
 
-        <section className="clients section-pad" id="clients">
+        <section className="clients section-pad" id="clients" data-page-section="clients">
           <div className="section-shell clients__grid">
             <div>
               <p className="eyebrow">04 / For clients</p>
@@ -594,7 +590,7 @@ function App() {
           </div>
         </section>
 
-        <section className="locations section-pad" id="locations">
+        <section className="locations section-pad" id="locations" data-page-section="locations">
           <div className="section-shell">
             <div className="section-heading split-heading light">
               <div>
@@ -632,7 +628,7 @@ function App() {
           </div>
         </section>
 
-        <section className="careers section-pad" id="careers">
+        <section className="careers section-pad" id="careers" data-page-section="careers">
           <div className="section-shell">
             <div className="section-heading center-heading">
               <p className="eyebrow">06 / Careers at TrustDoc</p>
@@ -738,10 +734,10 @@ function App() {
           </div>
           <div>
             <h3>Explore</h3>
-            <a href="#how-it-works">How it works</a>
+            <a href="/how-it-works">How it works</a>
             <a href="#tracking">Tracking</a>
-            <a href="#locations">Locations</a>
-            <a href="#careers">Careers</a>
+            <a href="/locations">Locations</a>
+            <a href="/careers">Careers</a>
           </div>
           <div>
             <h3>Clients</h3>
@@ -758,7 +754,7 @@ function App() {
           </div>
           <div>
             <h3>Contact</h3>
-            <a href="tel:+254700000000">+254 700 000 000</a>
+            <a href="tel:+254759838426">0759 838 426</a>
             <p>
               Nairobi, Kenya
               <br />
