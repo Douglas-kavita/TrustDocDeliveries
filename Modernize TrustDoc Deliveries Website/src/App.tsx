@@ -119,8 +119,8 @@ function Logo({ light = false }: { light?: boolean }) {
 }
 
 function RegisterModal({ onClose, onRegistered }: { onClose: () => void; onRegistered: () => void }) {
-  const [showForm, setShowForm] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [codeRequested, setCodeRequested] = useState(false);
 
   useEffect(() => {
     const close = (event: KeyboardEvent) => event.key === "Escape" && onClose();
@@ -159,63 +159,37 @@ function RegisterModal({ onClose, onRegistered }: { onClose: () => void; onRegis
               Done
             </button>
           </div>
-        ) : !showForm ? (
-          <>
-            <p className="eyebrow">Get started</p>
-            <h2 id="register-title">How would you like to register?</h2>
-            <p className="modal__intro">Choose your registration type to continue securely.</p>
-            <button className="role-card" onClick={() => setShowForm(true)}>
-              <span className="role-card__icon">
-                <Icon name="lock" />
-              </span>
-              <span>
-                <strong>Register as a client</strong>
-                <small>Request, monitor and receive your documents.</small>
-              </span>
-              <Icon name="arrow" />
-            </button>
-            <p className="modal__note">
-              <Icon name="check" /> Registration and monitoring are always free.
-            </p>
-          </>
         ) : (
           <>
-            <button className="text-back" onClick={() => setShowForm(false)}>
-              ← Back
-            </button>
             <p className="eyebrow">Client registration</p>
             <h2 id="register-title">Let’s secure your document journey.</h2>
             <form className="register-form" onSubmit={submit}>
               <label>
                 Full name
-                <input required placeholder="e.g. Amina Wanjiku" />
+                <input required autoComplete="name" placeholder="e.g. Amina Wanjiku" />
               </label>
               <label>
                 Phone number
-                <input required type="tel" placeholder="+254 7XX XXX XXX" />
+                <input required type="tel" autoComplete="tel" placeholder="+254 7XX XXX XXX" />
               </label>
-              <label>
-                Document type
-                <select required defaultValue="">
-                  <option value="" disabled>
-                    Select document
-                  </option>
-                  <option>National ID</option>
-                  <option>Passport</option>
-                  <option>Driving licence</option>
-                  <option>Birth certificate</option>
-                  <option>Other official document</option>
-                </select>
-              </label>
-              <button className="button button--primary button--wide" type="submit">
-                Complete registration <Icon name="arrow" />
-              </button>
+              {codeRequested && <label>
+                SMS verification code
+                <input required inputMode="numeric" autoComplete="one-time-code" maxLength={6} placeholder="Enter the code sent to your phone" />
+              </label>}
+              {!codeRequested ? (
+                <button className="button button--primary button--wide" type="button" onClick={() => setCodeRequested(true)}>
+                  Send verification code <Icon name="arrow" />
+                </button>
+              ) : (
+                <button className="button button--primary button--wide" type="submit">
+                  Verify and continue <Icon name="arrow" />
+                </button>
+              )}
               <p className="form-privacy">
                 <Icon name="lock" /> Your details stay private and protected.
               </p>
             </form>
           </>
-        )}
       </div>
     </div>
   );
@@ -223,7 +197,8 @@ function RegisterModal({ onClose, onRegistered }: { onClose: () => void; onRegis
 
 
 function SignInModal({ onClose }: { onClose: () => void }) {
-  const [role, setRole] = useState("client");
+  const [phone, setPhone] = useState("");
+  const [codeRequested, setCodeRequested] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   useEffect(() => {
     const close = (event: KeyboardEvent) => event.key === "Escape" && onClose();
@@ -235,15 +210,14 @@ function SignInModal({ onClose }: { onClose: () => void }) {
     <button className="modal__backdrop" onClick={onClose} aria-label="Close sign in" />
     <div className="modal__panel">
       <button className="modal__close" onClick={onClose} aria-label="Close"><Icon name="close" /></button>
-      <p className="eyebrow">Secure portal access</p>
-      <h2 id="signin-title">Sign in to TrustDoc.</h2>
-      <p className="modal__intro">Choose your account type and enter your sign-in details.</p>
-      {submitted ? <div className="signin-notice"><strong>Sign-in is being prepared.</strong><p>Your designed role-specific login will be connected when we build the portal authentication screens next.</p><button className="button button--primary" onClick={onClose}>Okay</button></div> :
+      <p className="eyebrow">Client account access</p>
+      <h2 id="signin-title">Welcome back.</h2>
+      <p className="modal__intro">Enter your phone number and verify with the SMS code.</p>
+      {submitted ? <div className="signin-notice"><strong>Verification received.</strong><p>SMS sign-in will be connected to the secure client account service when authentication is integrated.</p><button className="button button--primary" onClick={onClose}>Okay</button></div> :
       <form className="register-form" onSubmit={e => { e.preventDefault(); setSubmitted(true); }}>
-        <label>Sign in as<select value={role} onChange={e=>setRole(e.target.value)}><option value="client">Client</option><option value="agent">TrustDoc Agent</option><option value="rider">Delivery Rider</option><option value="admin">Administrator</option></select></label>
-        <label>Email or phone number<input required autoComplete="username" placeholder="Enter your email or phone" /></label>
-        <label>Password<input required type="password" autoComplete="current-password" placeholder="Enter your password" /></label>
-        <button className="button button--primary button--wide" type="submit">Continue securely <Icon name="arrow" /></button>
+        <label>Phone number<input required type="tel" autoComplete="tel" value={phone} onChange={e=>setPhone(e.target.value)} placeholder="+254 7XX XXX XXX" /></label>
+        {codeRequested && <label>SMS verification code<input required inputMode="numeric" autoComplete="one-time-code" maxLength={6} placeholder="Enter the code sent to your phone" /></label>}
+        {!codeRequested ? <button className="button button--primary button--wide" type="button" onClick={()=>setCodeRequested(true)}>Send verification code <Icon name="arrow" /></button> : <button className="button button--primary button--wide" type="submit">Verify and sign in <Icon name="arrow" /></button>}
         <p className="form-privacy"><Icon name="lock" /> Your account details are protected.</p>
       </form>}
     </div>
@@ -288,7 +262,14 @@ function App() {
 
   const openRegister = () => {
     setMenuOpen(false);
+    setSignInOpen(false);
     setModalOpen(true);
+  };
+
+  const openSignIn = () => {
+    setMenuOpen(false);
+    setModalOpen(false);
+    setSignInOpen(true);
   };
 
   return (
@@ -304,9 +285,9 @@ function App() {
             ))}
           </nav>
           <div className="nav-actions">
-            <a href="#portal" className="signin-link">
+            <button type="button" className="signin-link" onClick={openSignIn}>
               Sign in
-            </a>
+            </button>
             <button className="button button--small button--primary" onClick={openRegister}>
               Register free
             </button>
@@ -325,9 +306,9 @@ function App() {
                   {label}
                 </a>
               ))}
-              <a href="#portal" onClick={() => setMenuOpen(false)}>
+              <button type="button" onClick={openSignIn}>
                 Sign in
-              </a>
+              </button>
               <button onClick={openRegister}>Register free</button>
             </div>
           )}
