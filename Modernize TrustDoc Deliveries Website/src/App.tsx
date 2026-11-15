@@ -267,6 +267,45 @@ function ClientPortal({ onSignOut }: { onSignOut: () => void }) {
   </div>;
 }
 
+
+function AgentPortal({ onSignOut }: { onSignOut: () => void }) {
+  const [active, setActive] = useState("Overview");
+  const [draft, setDraft] = useState("");
+  const [messages, setMessages] = useState<string[]>(() => { try { return JSON.parse(localStorage.getItem("trustdoc_agent_messages") || "[]"); } catch { return []; } });
+  const [taskStatus, setTaskStatus] = useState<Record<string,string>>(() => { try { return JSON.parse(localStorage.getItem("trustdoc_agent_tasks") || "{}"); } catch { return {}; } });
+  const tasks = [{id:"TD-2048",client:"Amina Wanjiku",document:"National ID collection",area:"Nairobi CBD",status:"Monitoring"},{id:"TD-2051",client:"Peter Mwangi",document:"Good Conduct Certificate",area:"Westlands",status:"Awaiting confirmation"},{id:"TD-2054",client:"Grace Njeri",document:"Birth Certificate",area:"Kilimani",status:"Ready for collection"}];
+  const updateTask = (id:string,value:string) => { const next={...taskStatus,[id]:value}; setTaskStatus(next); localStorage.setItem("trustdoc_agent_tasks",JSON.stringify(next)); };
+  const send = () => { if(!draft.trim()) return; const next=[...messages,draft.trim()]; setMessages(next); localStorage.setItem("trustdoc_agent_messages",JSON.stringify(next)); setDraft(""); };
+  const nav=["Overview","My Tasks","Documents","Clients","Tracking","Messages","Payments","My Profile","Settings"];
+  return <div className="client-portal agent-portal">
+    <aside className="client-sidebar"><Logo/><div className="client-side-label">AGENT WORKSPACE</div><nav>{nav.map(item=><button key={item} className={active===item?"active":""} onClick={()=>setActive(item)}><span className="client-nav-dot"/>{item}</button>)}</nav><button className="client-signout" onClick={onSignOut}>Sign out</button></aside>
+    <main className="client-main">
+      <header className="client-topbar"><div><span className="client-breadcrumb">TRUSTDOC / AGENT PORTAL / {active.toUpperCase()}</span><h1>{active==="Overview"?"Good morning, David.":active}</h1></div><div className="client-user"><span className="client-avatar">DO</span><span><b>David Otieno</b><small>Field Operations Agent</small></span></div></header>
+      {active==="Overview" && <>
+        <section className="client-welcome"><div><span className="client-kicker">YOUR OPERATIONS DESK</span><h2>Every detail.<br/><em>Accounted for.</em></h2><p>Manage assigned client requests, document readiness and secure handovers.</p></div><div className="client-welcome-mark"><Icon name="check" className="size-7"/></div></section>
+        <div className="client-stat-grid"><article><small>ASSIGNED REQUESTS</small><strong>08</strong><span>Across your service area</span></article><article><small>AWAITING ACTION</small><strong>03</strong><span>Require your attention</span></article><article><small>COMPLETED THIS MONTH</small><strong>24</strong><span>Successful handovers</span></article></div>
+        <section className="client-card client-page-card agent-wide"><div className="client-card-head"><div><span className="client-kicker">PRIORITY QUEUE</span><h2>Requests requiring attention</h2></div><button className="client-action" onClick={()=>setActive("My Tasks")}>View all tasks <Icon name="arrow"/></button></div>{tasks.map(t=><div className="client-record" key={t.id}><div><b>{t.document} · {t.id}</b><small>{t.client} · {t.area}</small></div><span className="client-status">{taskStatus[t.id]||t.status}</span></div>)}</section>
+        <section className="client-card client-help"><div><span className="client-kicker">OPERATIONS REMINDER</span><h3>Protect the chain of custody.</h3><p>Never open a sealed document. Only authorized Huduma personnel may verify and reseal it.</p></div><span className="agent-shield">SECURE</span></section>
+      </>}
+      {active==="My Tasks" && <section className="client-card client-page-card agent-wide"><span className="client-kicker">ASSIGNED WORK QUEUE</span><h2>My tasks</h2>{tasks.map(t=><div className="agent-task" key={t.id}><div><b>{t.id} · {t.document}</b><p>{t.client} · {t.area}</p><small>Update the operational status as work progresses.</small></div><select value={taskStatus[t.id]||t.status} onChange={e=>updateTask(t.id,e.target.value)}><option>Monitoring</option><option>Awaiting confirmation</option><option>Ready for collection</option><option>Collected and sealed</option><option>Assigned to rider</option><option>Completed</option><option>Exception reported</option></select></div>)}</section>}
+      {active==="Documents" && <section className="client-card client-page-card agent-wide"><span className="client-kicker">DOCUMENT CONTROL</span><h2>Document register</h2>{tasks.map(t=><div className="client-record" key={t.id}><div><b>{t.document}</b><small>{t.id} · {t.client}</small></div><span className="client-status">{taskStatus[t.id]||t.status}</span></div>)}<p className="client-muted">Demo records only. Record readiness; do not access or open sealed document contents.</p></section>}
+      {active==="Clients" && <section className="client-card client-page-card agent-wide"><span className="client-kicker">ASSIGNED CLIENTS</span><h2>Client directory</h2>{tasks.map(t=><div className="client-record" key={t.id}><div><b>{t.client}</b><small>{t.id} · {t.area}</small></div><span className="client-status">Active request</span></div>)}</section>}
+      {active==="Tracking" && <section className="client-card client-page-card agent-wide"><span className="client-kicker">JOURNEY MONITORING</span><h2>Delivery tracking</h2><div className="client-timeline client-timeline--large"><div className="done"><i/>Client request registered <small>12 Nov · 9:15 AM</small></div><div className="done"><i/>Application submission confirmed</div><div className="current"><i/>Agent monitoring and readiness checks</div><div><i/>Authorized release and secure resealing</div><div><i/>Verified rider assignment</div><div><i/>Recipient OTP and handover</div></div></section>}
+      {active==="Messages" && <section className="client-card client-page-card agent-wide"><span className="client-kicker">TEAM COMMUNICATIONS</span><h2>Messages & notices</h2><div className="client-message"><b>TrustDoc Operations</b><small>Welcome, David. Check this inbox for operational updates and administrator announcements.</small></div>{messages.map((m,i)=><div className="client-message client-message--sent" key={i}><b>You · Draft message</b><small>{m}</small></div>)}<textarea className="client-message-input" value={draft} onChange={e=>setDraft(e.target.value)} placeholder="Write an internal message..."/><button className="button button--primary" onClick={send} disabled={!draft.trim()}>Save message</button><p className="client-muted">Demo mode: saved in this browser only; it is not delivered to other accounts or staff.</p></section>}
+      {active==="Payments" && <section className="client-card client-page-card agent-wide"><span className="client-kicker">AGENT EARNINGS</span><h2>Payments</h2><div className="client-stat-grid"><article><small>THIS MONTH</small><strong>KSh 18,400</strong><span>Illustrative demo earnings</span></article><article><small>PAID</small><strong>KSh 14,200</strong><span>Illustrative demo figure</span></article><article><small>PENDING</small><strong>KSh 4,200</strong><span>Illustrative demo figure</span></article></div><p className="client-muted">These are sample figures, not actual payroll or payment records.</p></section>}
+      {(active==="My Profile"||active==="Settings") && <section className="client-card client-page-card agent-wide"><span className="client-kicker">AGENT ACCOUNT</span><h2>{active}</h2><div className="client-profile-detail"><span>Name</span><b>David Otieno</b></div><div className="client-profile-detail"><span>Role</span><b>Field Operations Agent</b></div><div className="client-profile-detail"><span>Service area</span><b>Nairobi County</b></div><div className="client-profile-detail"><span>Account</span><b>Demo agent · Not production verified</b></div></section>}
+      <p className="agent-demo-note">DEMO WORKSPACE · Sample records and actions are stored locally in this browser. No live Admin, client, rider or backend connection is active yet.</p>
+    </main>
+  </div>;
+}
+
+function AgentLogin({ onAuthenticated }: { onAuthenticated:()=>void }) {
+  const [email,setEmail]=useState("agent@trustdoc.co.ke");
+  const [password,setPassword]=useState("");
+  const [error,setError]=useState("");
+  return <div className="agent-login-wrap"><div className="agent-login-card"><Logo/><span className="client-kicker">AUTHORIZED PERSONNEL</span><h1>Agent sign in</h1><p>Access your TrustDoc operations workspace.</p><form className="register-form" onSubmit={e=>{e.preventDefault();if(email.trim().toLowerCase()==="agent@trustdoc.co.ke"&&password==="Agent@2026"){localStorage.setItem("trustdoc_agent_authenticated","true");onAuthenticated();}else setError("Incorrect demo email or password. Please use the credentials shown below.");}}><label>Work email<input type="email" required value={email} onChange={e=>setEmail(e.target.value)}/></label><label>Password<input type="password" required value={password} onChange={e=>setPassword(e.target.value)} placeholder="Enter your password"/></label>{error&&<p className="signin-error">{error}</p>}<button className="button button--primary button--wide" type="submit">Open Agent Portal <Icon name="arrow"/></button></form><div className="demo-credentials"><b>Agent demo credentials</b><span>Email: agent@trustdoc.co.ke</span><span>Password: Agent@2026</span></div><p className="agent-demo-note">Demo access only. This is not a secure production login.</p><a className="agent-back-link" href="/">← Back to TrustDoc website</a></div></div>;
+}
+
 function StaffChat({ registered, onRegister }: { registered: boolean; onRegister: () => void }) {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -293,7 +332,7 @@ function App() {
   const [activeStep, setActiveStep] = useState(0);
   const [heroSlide, setHeroSlide] = useState(0);
   const [clientPortalOpen, setClientPortalOpen] = useState(false);
-  const [clientAuthenticated, setClientAuthenticated] = useState(() => window.localStorage.getItem("trustdoc_client_authenticated") === "true");
+  const [clientAuthenticated, setClientAuthenticated] = useState(() => window.localStorage.getItem("trustdoc_client_authenticated") === "true");\n  const [agentAuthenticated, setAgentAuthenticated] = useState(() => window.localStorage.getItem("trustdoc_agent_authenticated") === "true");
 
   useEffect(() => {
     const timer = window.setInterval(
@@ -305,7 +344,7 @@ function App() {
 
   useEffect(() => { const timer = window.setInterval(() => setHeroSlide((v) => (v + 1) % heroSlides.length), 5000); return () => window.clearInterval(timer); }, []);
 
-  if ((clientPortalOpen || currentPage === "/client") && clientAuthenticated) return <ClientPortal onSignOut={() => { window.localStorage.removeItem("trustdoc_client_authenticated"); setClientAuthenticated(false); setClientPortalOpen(false); window.history.replaceState({}, "", "/"); window.location.reload(); }} />;
+  if (currentPage === "/agent/login" && !agentAuthenticated) return <AgentLogin onAuthenticated={() => { setAgentAuthenticated(true); window.history.replaceState({}, "", "/agent"); }} />;\n  if ((currentPage === "/agent" || currentPage === "/agent/login") && agentAuthenticated) return <AgentPortal onSignOut={() => { localStorage.removeItem("trustdoc_agent_authenticated"); setAgentAuthenticated(false); window.history.replaceState({}, "", "/agent/login"); }} />;\n  if ((clientPortalOpen || currentPage === "/client") && clientAuthenticated) return <ClientPortal onSignOut={() => { window.localStorage.removeItem("trustdoc_client_authenticated"); setClientAuthenticated(false); setClientPortalOpen(false); window.history.replaceState({}, "", "/"); window.location.reload(); }} />;
 
   const openRegister = () => {
     setMenuOpen(false);
@@ -844,7 +883,7 @@ function App() {
           </div>
           <div>
             <h3>Portal access</h3>
-            <a href="#portal">Agent portal</a>
+            <a href="/agent/login">Agent portal</a>
             <a href="#portal">Rider portal</a>
             <a href="#portal">Admin portal</a>
             <small>Authorized team members only</small>
