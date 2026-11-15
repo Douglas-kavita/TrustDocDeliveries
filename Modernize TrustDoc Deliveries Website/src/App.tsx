@@ -443,7 +443,7 @@ function App() {
               </div>
             </div>
             <div>
-              <p className="eyebrow eyebrow--gold">02 / Track your delivery</p>
+              <p className="eyebrow eyebrow--gold">03 / Track your delivery</p>
               <h2>
                 Two secure seals.
                 <br />
@@ -469,9 +469,8 @@ function App() {
                   </span>
                 </div>
               </div>
-              <a href="/clients" className="inline-link">
-                See how secure handover works <Icon name="arrow" />
-              </a>
+              <p className="detail-copy">At every milestone, the status record identifies what has happened, who is responsible for the next action and when the client should expect an update. The rider never opens or inspects the sealed document.</p>
+              <div className="section-explore"><a className="button button--secondary" href="/tracking">Explore Tracking <Icon name="arrow" /></a></div>
             </div>
           </div>
         </section>
@@ -479,7 +478,7 @@ function App() {
         <section className="options section-pad" id="plans" data-page-section="plans">
           <div className="section-shell">
             <div className="section-heading center-heading">
-              <p className="eyebrow">03 / Simple pricing</p>
+              <p className="eyebrow">04 / Simple pricing</p>
               <h2>
                 Three clear options.
                 <br />
@@ -522,7 +521,7 @@ function App() {
         <section className="clients section-pad" id="clients" data-page-section="clients">
           <div className="section-shell clients__grid">
             <div>
-              <p className="eyebrow">04 / For clients</p>
+              <p className="eyebrow">05 / For clients</p>
               <h2>Your private code proves it’s really you.</h2>
               <p className="lead">
                 Once payment is confirmed, you receive a secret delivery code. It is never printed
@@ -557,6 +556,7 @@ function App() {
               <button className="button button--primary" onClick={openRegister}>
                 Register as a client <Icon name="arrow" />
               </button>
+              <div className="section-explore"><a className="button button--secondary" href="/clients">Explore Clients <Icon name="arrow" /></a></div>
             </div>
             <div className="code-demo">
               <div className="code-demo__top">
@@ -594,7 +594,7 @@ function App() {
           <div className="section-shell">
             <div className="section-heading split-heading light">
               <div>
-                <p className="eyebrow eyebrow--gold">05 / Supported locations</p>
+                <p className="eyebrow eyebrow--gold">02 / Supported locations</p>
                 <h2>
                   Across Nairobi.
                   <br />
@@ -625,6 +625,7 @@ function App() {
                 </article>
               ))}
             </div>
+            <div className="section-explore"><a className="button button--secondary button--light" href="/locations">Explore Locations <Icon name="arrow" /></a></div>
           </div>
         </section>
 
@@ -703,6 +704,7 @@ function App() {
                 </div>
               </article>
             </div>
+            <div className="section-explore"><a className="button button--secondary" href="/careers">Explore Careers <Icon name="arrow" /></a></div>
           </div>
         </section>
 
