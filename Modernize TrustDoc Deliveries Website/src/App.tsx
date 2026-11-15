@@ -374,7 +374,7 @@ function App() {
 
   useEffect(() => { const timer = window.setInterval(() => setHeroSlide((v) => (v + 1) % heroSlides.length), 5000); return () => window.clearInterval(timer); }, []);
 
-  if (currentPage === "/rider/login" && !riderAuthenticated) return <RiderLogin onAuthenticated={() => { setRiderAuthenticated(true); window.location.href = "/rider"; }} />;
+  if ((currentPage === "/rider/login" || currentPage === "/rider") && !riderAuthenticated) return <RiderLogin onAuthenticated={() => { setRiderAuthenticated(true); window.location.href = "/rider"; }} />;
   if ((currentPage === "/rider" || currentPage === "/rider/login") && riderAuthenticated) return <RiderPortal onSignOut={() => { localStorage.removeItem("trustdoc_rider_authenticated"); setRiderAuthenticated(false); window.location.href = "/rider/login"; }} />;
   if (currentPage === "/agent/login" && !agentAuthenticated) return <AgentLogin onAuthenticated={() => { setAgentAuthenticated(true); window.history.replaceState({}, "", "/agent"); }} />;
   if ((currentPage === "/agent" || currentPage === "/agent/login") && agentAuthenticated) return <AgentPortal onSignOut={() => { localStorage.removeItem("trustdoc_agent_authenticated"); setAgentAuthenticated(false); window.history.replaceState({}, "", "/agent/login"); }} />;
@@ -922,7 +922,7 @@ function App() {
           <div>
             <h3>Portal access</h3>
             <a href="/agent/login">Agent portal</a>
-            <a href="#portal">Rider portal</a>
+            <a href="/rider/login">Rider portal</a>
             <a href="#portal">Admin portal</a>
             <small>Authorized team members only</small>
           </div>
