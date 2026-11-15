@@ -118,7 +118,7 @@ function Logo({ light = false }: { light?: boolean }) {
   );
 }
 
-function RegisterModal({ onClose }: { onClose: () => void }) {
+function RegisterModal({ onClose, onRegistered }: { onClose: () => void; onRegistered: () => void }) {
   const [showForm, setShowForm] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -135,6 +135,7 @@ function RegisterModal({ onClose }: { onClose: () => void }) {
   const submit = (event: FormEvent) => {
     event.preventDefault();
     setSubmitted(true);
+    onRegistered();
   };
 
   return (
@@ -220,10 +221,57 @@ function RegisterModal({ onClose }: { onClose: () => void }) {
   );
 }
 
+
+function SignInModal({ onClose }: { onClose: () => void }) {
+  const [role, setRole] = useState("client");
+  const [submitted, setSubmitted] = useState(false);
+  useEffect(() => {
+    const close = (event: KeyboardEvent) => event.key === "Escape" && onClose();
+    document.addEventListener("keydown", close);
+    document.body.style.overflow = "hidden";
+    return () => { document.removeEventListener("keydown", close); document.body.style.overflow = ""; };
+  }, [onClose]);
+  return <div className="modal" role="dialog" aria-modal="true" aria-labelledby="signin-title">
+    <button className="modal__backdrop" onClick={onClose} aria-label="Close sign in" />
+    <div className="modal__panel">
+      <button className="modal__close" onClick={onClose} aria-label="Close"><Icon name="close" /></button>
+      <p className="eyebrow">Secure portal access</p>
+      <h2 id="signin-title">Sign in to TrustDoc.</h2>
+      <p className="modal__intro">Choose your account type and enter your sign-in details.</p>
+      {submitted ? <div className="signin-notice"><strong>Sign-in is being prepared.</strong><p>Your designed role-specific login will be connected when we build the portal authentication screens next.</p><button className="button button--primary" onClick={onClose}>Okay</button></div> :
+      <form className="register-form" onSubmit={e => { e.preventDefault(); setSubmitted(true); }}>
+        <label>Sign in as<select value={role} onChange={e=>setRole(e.target.value)}><option value="client">Client</option><option value="agent">TrustDoc Agent</option><option value="rider">Delivery Rider</option><option value="admin">Administrator</option></select></label>
+        <label>Email or phone number<input required autoComplete="username" placeholder="Enter your email or phone" /></label>
+        <label>Password<input required type="password" autoComplete="current-password" placeholder="Enter your password" /></label>
+        <button className="button button--primary button--wide" type="submit">Continue securely <Icon name="arrow" /></button>
+        <p className="form-privacy"><Icon name="lock" /> Your account details are protected.</p>
+      </form>}
+    </div>
+  </div>;
+}
+
+function StaffChat({ registered, onRegister }: { registered: boolean; onRegister: () => void }) {
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
+  const [notice, setNotice] = useState("");
+  return <>
+    {open && <div className="staff-chat">
+      <div className="staff-chat__head"><span><b>TrustDoc staff</b><small>Client support</small></span><button onClick={()=>setOpen(false)} aria-label="Close chat">×</button></div>
+      <div className="staff-chat__body">
+        {!registered ? <><p>Welcome. To message our staff directly, please register as a client first.</p><button className="button button--primary button--wide" onClick={onRegister}>Register to continue</button></> :
+        <><p className="staff-chat__welcome">You can now start a support conversation.</p><textarea value={message} onChange={e=>setMessage(e.target.value)} placeholder="Write a message to TrustDoc staff..." /><button className="button button--primary button--wide" onClick={()=>{if(message.trim()){setNotice("Your message is ready. Staff messaging will be connected to the secure client inbox.");setMessage("");}}}>Send message</button>{notice && <small className="staff-chat__notice">{notice}</small>}</>}
+      </div>
+    </div>}
+    <button className="staff-chat-launch" onClick={()=>setOpen(v=>!v)} aria-label="Chat with TrustDoc staff"><span>✉</span><small>Chat with us</small></button>
+  </>;
+}
+
 function App() {
   const currentPage = window.location.pathname.replace(/\/$/, "") || "/";
   const pageMap: Record<string, string> = { "/how-it-works": "how-it-works", "/tracking": "tracking", "/locations": "locations", "/plans": "plans", "/clients": "clients", "/careers": "careers" };
   const [modalOpen, setModalOpen] = useState(false);
+  const [signInOpen, setSignInOpen] = useState(false);
+  const [clientRegistered, setClientRegistered] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const [heroSlide, setHeroSlide] = useState(0);
@@ -791,7 +839,9 @@ function App() {
           </div>
         </div>
       </footer>
-      {modalOpen && <RegisterModal onClose={() => setModalOpen(false)} />}
+      {modalOpen && <RegisterModal onClose={() => setModalOpen(false)} onRegistered={() => setClientRegistered(true)} />}
+      {signInOpen && <SignInModal onClose={() => setSignInOpen(false)} />}
+      <StaffChat registered={clientRegistered} onRegister={() => { setModalOpen(true); setSignInOpen(false); }} />
     </div>
   );
 }
