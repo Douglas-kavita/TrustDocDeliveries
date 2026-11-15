@@ -424,6 +424,7 @@ function App() {
               </div>
             </div>
           </div>
+<div className="detail-panel"><h3>The four stages of your document journey</h3><div className="detail-grid"><article><b>01 · Register</b><p>Create your free client profile and provide the details needed to identify your application and collection point.</p></article><article><b>02 · Monitor</b><p>Your assigned agent follows progress and contacts you when readiness or confirmation is required.</p></article><article><b>03 · Secure collection</b><p>Once ready, the authorized collection and sealing process is coordinated. The package remains sealed during transit.</p></article><article><b>04 · Verified handover</b><p>The recipient checks the package and uses a private code to confirm identity before handover is completed.</p></article></div><p>TrustDoc supports the document journey after the client completes the normal application process with the issuing institution. It does not replace that institution or make decisions on its behalf.</p></div>
         </section>
 
         <div className="section-explore"><a className="button button--secondary" href="/how-it-works">Explore How it works <Icon name="arrow" /></a></div>
@@ -474,6 +475,7 @@ function App() {
               <div className="section-explore"><a className="button button--secondary" href="/tracking">Explore Tracking <Icon name="arrow" /></a></div>
             </div>
           </div>
+<div className="detail-panel"><h3>Understand each tracking milestone</h3><div className="detail-grid"><article><b>Request received</b><p>Your delivery request is recorded for the operations team.</p></article><article><b>Monitoring in progress</b><p>An agent follows the application status and shares relevant updates.</p></article><article><b>Ready for collection</b><p>The team contacts you to confirm the next step before authorized collection.</p></article><article><b>Out for delivery</b><p>A verified rider transports the sealed package along the assigned route.</p></article><article><b>Handover confirmed</b><p>The private recipient code confirms the handover and closes the delivery record.</p></article></div><p>Tracking updates help you understand progress and responsibility at each stage. Riders are not authorized to open or inspect sealed documents.</p></div>
         </section>
 
         <section className="options section-pad" id="plans" data-page-section="plans">
@@ -518,7 +520,8 @@ function App() {
             </div>
           </div>
 <div className="section-explore"><a className="button button--secondary" href="/tracking">Explore Tracking <Icon name="arrow" /></a></div>
-                </section>
+        <div className="detail-panel"><h3>What the pricing options include</h3><div className="detail-grid"><article><b>Free registration</b><p>Create your client record without a registration charge.</p></article><article><b>Free monitoring</b><p>Receive progress updates while your document is being monitored.</p></article><article><b>Standard · KSh 300</b><p>Same-day delivery to an agreed meeting point, subject to route availability.</p></article><article><b>Doorstep · up to KSh 400</b><p>Delivery to an approved home or office address, with the fee confirmed before dispatch.</p></article></div><p>There is no registration or monitoring fee. Any delivery fee is confirmed with the client before the delivery is arranged.</p></div>
+        </section>
 
         <div className="section-explore"><a className="button button--secondary" href="/tracking">Explore Tracking <Icon name="arrow" /></a></div>
         <section className="clients section-pad" id="clients" data-page-section="clients">
@@ -592,7 +595,8 @@ function App() {
             </div>
           </div>
 <div className="section-explore"><a className="button button--secondary" href="/clients">Explore Clients <Icon name="arrow" /></a></div>
-                </section>
+        <div className="detail-panel"><h3>How to prepare for a safe handover</h3><div className="detail-grid"><article><b>Keep your code private</b><p>Do not share the delivery code before the package reaches you.</p></article><article><b>Check the sealed package</b><p>Inspect the envelope on arrival before confirming receipt.</p></article><article><b>Verify your identity</b><p>The private code is used to confirm the intended recipient.</p></article><article><b>Confirm completion</b><p>Provide the code only when you are satisfied the handover is correct.</p></article></div><p>If the package or recipient details do not match, pause the handover and contact TrustDoc support. The rider transports the sealed envelope and is not authorized to open it.</p></div>
+        </section>
 
         <section className="locations section-pad" id="locations" data-page-section="locations">
           <div className="section-shell">
@@ -632,7 +636,8 @@ function App() {
             <div className="section-explore"><a className="button button--secondary button--light" href="/locations">Explore Locations <Icon name="arrow" /></a></div>
           </div>
 <div className="section-explore"><a className="button button--secondary button--light" href="/locations">Explore Supported Locations <Icon name="arrow" /></a></div>
-                </section>
+        <div className="detail-panel detail-panel--dark"><h3>Coverage and route confirmation</h3><p>Availability depends on the collection point, destination, rider availability and the route for that day. The locations listed are service-area examples, not a guarantee that every address is available at every time.</p><p>Before dispatch, the team confirms the meeting point or delivery address, the handover arrangement and any applicable delivery fee. If your destination is outside the listed areas, contact TrustDoc to ask whether a route can be arranged.</p></div>
+        </section>
 
         <section className="careers section-pad" id="careers" data-page-section="careers">
           <div className="section-shell">
@@ -712,7 +717,8 @@ function App() {
             <div className="section-explore"><a className="button button--secondary" href="/careers">Explore Careers <Icon name="arrow" /></a></div>
           </div>
 <div className="section-explore"><a className="button button--secondary" href="/careers">Explore Careers <Icon name="arrow" /></a></div>
-                </section>
+        <div className="detail-panel"><h3>Working with TrustDoc</h3><div className="detail-grid"><article><b>Agent responsibilities</b><p>Support client registration, monitor application progress, coordinate readiness and maintain clear status records.</p></article><article><b>Rider responsibilities</b><p>Transport sealed envelopes carefully, follow assigned routes and complete identity-verified handovers.</p></article><article><b>Professional standards</b><p>Respect client privacy, communicate clearly, follow procedures and report exceptions promptly.</p></article><article><b>How to apply</b><p>Use the role-specific email link above and include your contact details, location and relevant experience.</p></article></div><p>Applications are reviewed according to operational needs and service-area coverage. Do not send original identity documents by email.</p></div>
+        </section>
 
         <section className="cta">
           <div className="section-shell cta__inner">
