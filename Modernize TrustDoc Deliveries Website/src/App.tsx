@@ -290,6 +290,7 @@ function App() {
   const [activeStep, setActiveStep] = useState(0);
   const [heroSlide, setHeroSlide] = useState(0);
   const [clientPortalOpen, setClientPortalOpen] = useState(false);
+  const [clientAuthenticated, setClientAuthenticated] = useState(() => window.localStorage.getItem("trustdoc_client_authenticated") === "true");
 
   useEffect(() => {
     const timer = window.setInterval(
@@ -301,7 +302,7 @@ function App() {
 
   useEffect(() => { const timer = window.setInterval(() => setHeroSlide((v) => (v + 1) % heroSlides.length), 5000); return () => window.clearInterval(timer); }, []);
 
-  if (clientPortalOpen || currentPage === "/client") return <ClientPortal onSignOut={() => { setClientPortalOpen(false); window.history.replaceState({}, "", "/"); window.location.reload(); }} />;
+  if ((clientPortalOpen || currentPage === "/client") && clientAuthenticated) return <ClientPortal onSignOut={() => { window.localStorage.removeItem("trustdoc_client_authenticated"); setClientAuthenticated(false); setClientPortalOpen(false); window.history.replaceState({}, "", "/"); window.location.reload(); }} />;
 
   const openRegister = () => {
     setMenuOpen(false);
@@ -328,12 +329,14 @@ function App() {
             ))}
           </nav>
           <div className="nav-actions">
-            <button type="button" className="signin-link" onClick={openSignIn}>
-              Sign in
-            </button>
-            <button className="button button--small button--primary" onClick={openRegister}>
-              Register free
-            </button>
+            {clientAuthenticated ? (
+              <button type="button" className="client-profile-shortcut" onClick={() => { window.history.pushState({}, "", "/client"); setClientPortalOpen(true); }} aria-label="Open your client profile and portal" title="My client portal">
+                <span>AW</span>
+              </button>
+            ) : <>
+              <button type="button" className="signin-link" onClick={openSignIn}>Sign in</button>
+              <button className="button button--small button--primary" onClick={openRegister}>Register free</button>
+            </>}
           </div>
           <button
             className="menu-button"
@@ -349,10 +352,7 @@ function App() {
                   {label}
                 </a>
               ))}
-              <button type="button" onClick={openSignIn}>
-                Sign in
-              </button>
-              <button onClick={openRegister}>Register free</button>
+              {clientAuthenticated ? <button className="mobile-profile-link" onClick={() => { setMenuOpen(false); window.history.pushState({}, "", "/client"); setClientPortalOpen(true); }}>My profile · Client portal</button> : <><button type="button" onClick={openSignIn}>Sign in</button><button onClick={openRegister}>Register free</button></>}
             </div>
           )}
         </div>
@@ -864,7 +864,7 @@ function App() {
         </div>
       </footer>
       {modalOpen && <RegisterModal onClose={() => setModalOpen(false)} onRegistered={() => setClientRegistered(true)} />}
-      {signInOpen && <SignInModal onClose={() => setSignInOpen(false)} onAuthenticated={() => { setSignInOpen(false); setClientPortalOpen(true); window.history.replaceState({}, "", "/client"); }} />}
+      {signInOpen && <SignInModal onClose={() => setSignInOpen(false)} onAuthenticated={() => { window.localStorage.setItem("trustdoc_client_authenticated", "true"); setClientAuthenticated(true); setSignInOpen(false); setClientPortalOpen(true); window.history.replaceState({}, "", "/client"); }} />}
       <StaffChat registered={clientRegistered} onRegister={() => { setModalOpen(true); setSignInOpen(false); }} />
     </div>
   );
