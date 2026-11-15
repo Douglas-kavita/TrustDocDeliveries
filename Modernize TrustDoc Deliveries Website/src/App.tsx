@@ -210,7 +210,7 @@ function SignInModal({ onClose, onAuthenticated }: { onClose: () => void; onAuth
   }, [onClose]);
   const verify = (event: FormEvent) => {
     event.preventDefault();
-    const normalized = phone.replace(/\\D/g, "");
+    const normalized = phone.replace(/\D/g, "");
     const validPhone = normalized === "254700000001" || normalized === "0700000001";
     if (!validPhone || code !== "246810") {
       setError("Those demo details do not match. Check the test phone number and code below.");
@@ -227,7 +227,7 @@ function SignInModal({ onClose, onAuthenticated }: { onClose: () => void; onAuth
       <p className="modal__intro">Enter your registered phone number and verify with your SMS code.</p>
       <form className="register-form" onSubmit={event => { event.preventDefault(); if (!codeRequested) setCodeRequested(true); else verify(event); }}>
         <label>Phone number<input required type="tel" autoComplete="tel" value={phone} onChange={event=>setPhone(event.target.value)} placeholder="+254 700 000 001" /></label>
-        {codeRequested && <label>SMS verification code<input required inputMode="numeric" autoComplete="one-time-code" maxLength={6} value={code} onChange={event=>setCode(event.target.value.replace(/\\D/g,"").slice(0,6))} placeholder="Enter 6-digit code" /></label>}
+        {codeRequested && <label>SMS verification code<input required inputMode="numeric" autoComplete="one-time-code" maxLength={6} value={code} onChange={event=>setCode(event.target.value.replace(/\D/g,"").slice(0,6))} placeholder="Enter 6-digit code" /></label>}
         {!codeRequested ? <button className="button button--primary button--wide" type="submit">Continue <Icon name="arrow" /></button> : <button className="button button--primary button--wide" type="submit">Verify and open dashboard <Icon name="arrow" /></button>}
         {error && <p className="signin-error" role="alert">{error}</p>}
         <div className="demo-credentials"><b>Demo access</b><span>Phone: +254 700 000 001</span><span>Code: 246810</span></div>
