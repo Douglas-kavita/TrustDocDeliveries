@@ -288,7 +288,8 @@ function App() {
   const [clientRegistered, setClientRegistered] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
-  const [heroSlide, setHeroSlide] = useState(0);\n  const [clientPortalOpen, setClientPortalOpen] = useState(false);
+  const [heroSlide, setHeroSlide] = useState(0);
+  const [clientPortalOpen, setClientPortalOpen] = useState(false);
 
   useEffect(() => {
     const timer = window.setInterval(
