@@ -301,7 +301,9 @@ function App() {
 
   useEffect(() => { const timer = window.setInterval(() => setHeroSlide((v) => (v + 1) % heroSlides.length), 5000); return () => window.clearInterval(timer); }, []);
 
-  if (clientPortalOpen || currentPage === "/client") return <ClientPortal onSignOut={() => { setClientPortalOpen(false); window.history.replaceState({}, "", "/"); window.location.reload(); }} />;\n\n  const openRegister = () => {
+  if (clientPortalOpen || currentPage === "/client") return <ClientPortal onSignOut={() => { setClientPortalOpen(false); window.history.replaceState({}, "", "/"); window.location.reload(); }} />;
+
+  const openRegister = () => {
     setMenuOpen(false);
     setSignInOpen(false);
     setModalOpen(true);
