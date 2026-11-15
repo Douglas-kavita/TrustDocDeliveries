@@ -1806,16 +1806,15 @@ footer small {
 }
 
 
-/* Independent public pages */
-.app[data-page="home"] [data-page-section],
-.app[data-page="home"] .options { display: none; }
+/* Homepage keeps the complete long-form experience. Subroutes show only their own full section. */
 .app:not([data-page="home"]) .hero,
 .app:not([data-page="home"]) .page-overview,
-.app:not([data-page="home"]) .options,
 .app:not([data-page="home"]) .cta { display: none; }
+.app:not([data-page="home"]) [data-page-section]:not([data-page-section="how-it-works"]):not([data-page-section="tracking"]):not([data-page-section="locations"]):not([data-page-section="plans"]):not([data-page-section="clients"]):not([data-page-section="careers"]) { display: none; }
 .app[data-page="how-it-works"] [data-page-section]:not([data-page-section="how-it-works"]),
 .app[data-page="tracking"] [data-page-section]:not([data-page-section="tracking"]),
 .app[data-page="locations"] [data-page-section]:not([data-page-section="locations"]),
+.app[data-page="plans"] [data-page-section]:not([data-page-section="plans"]),
 .app[data-page="clients"] [data-page-section]:not([data-page-section="clients"]),
 .app[data-page="careers"] [data-page-section]:not([data-page-section="careers"]) { display: none; }
 .page-overview__grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
