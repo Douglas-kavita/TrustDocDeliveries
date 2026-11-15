@@ -197,31 +197,70 @@ function RegisterModal({ onClose, onRegistered }: { onClose: () => void; onRegis
 }
 
 
-function SignInModal({ onClose }: { onClose: () => void }) {
+function SignInModal({ onClose, onAuthenticated }: { onClose: () => void; onAuthenticated: () => void }) {
   const [phone, setPhone] = useState("");
   const [codeRequested, setCodeRequested] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [code, setCode] = useState("");
+  const [error, setError] = useState("");
   useEffect(() => {
     const close = (event: KeyboardEvent) => event.key === "Escape" && onClose();
     document.addEventListener("keydown", close);
     document.body.style.overflow = "hidden";
     return () => { document.removeEventListener("keydown", close); document.body.style.overflow = ""; };
   }, [onClose]);
+  const verify = (event: FormEvent) => {
+    event.preventDefault();
+    const normalized = phone.replace(/\\D/g, "");
+    const validPhone = normalized === "254700000001" || normalized === "0700000001";
+    if (!validPhone || code !== "246810") {
+      setError("Those demo details do not match. Check the test phone number and code below.");
+      return;
+    }
+    onAuthenticated();
+  };
   return <div className="modal" role="dialog" aria-modal="true" aria-labelledby="signin-title">
     <button className="modal__backdrop" onClick={onClose} aria-label="Close sign in" />
     <div className="modal__panel">
       <button className="modal__close" onClick={onClose} aria-label="Close"><Icon name="close" /></button>
       <p className="eyebrow">Client account access</p>
       <h2 id="signin-title">Welcome back.</h2>
-      <p className="modal__intro">Enter your phone number and verify with the SMS code.</p>
-      {submitted ? <div className="signin-notice"><strong>Verification received.</strong><p>SMS sign-in will be connected to the secure client account service when authentication is integrated.</p><button className="button button--primary" onClick={onClose}>Okay</button></div> :
-      <form className="register-form" onSubmit={e => { e.preventDefault(); setSubmitted(true); }}>
-        <label>Phone number<input required type="tel" autoComplete="tel" value={phone} onChange={e=>setPhone(e.target.value)} placeholder="+254 7XX XXX XXX" /></label>
-        {codeRequested && <label>SMS verification code<input required inputMode="numeric" autoComplete="one-time-code" maxLength={6} placeholder="Enter the code sent to your phone" /></label>}
-        {!codeRequested ? <button className="button button--primary button--wide" type="button" onClick={()=>setCodeRequested(true)}>Send verification code <Icon name="arrow" /></button> : <button className="button button--primary button--wide" type="submit">Verify and sign in <Icon name="arrow" /></button>}
-        <p className="form-privacy"><Icon name="lock" /> Your account details are protected.</p>
-      </form>}
+      <p className="modal__intro">Enter your registered phone number and verify with your SMS code.</p>
+      <form className="register-form" onSubmit={event => { event.preventDefault(); if (!codeRequested) setCodeRequested(true); else verify(event); }}>
+        <label>Phone number<input required type="tel" autoComplete="tel" value={phone} onChange={event=>setPhone(event.target.value)} placeholder="+254 700 000 001" /></label>
+        {codeRequested && <label>SMS verification code<input required inputMode="numeric" autoComplete="one-time-code" maxLength={6} value={code} onChange={event=>setCode(event.target.value.replace(/\\D/g,"").slice(0,6))} placeholder="Enter 6-digit code" /></label>}
+        {!codeRequested ? <button className="button button--primary button--wide" type="submit">Continue <Icon name="arrow" /></button> : <button className="button button--primary button--wide" type="submit">Verify and open dashboard <Icon name="arrow" /></button>}
+        {error && <p className="signin-error" role="alert">{error}</p>}
+        <div className="demo-credentials"><b>Demo access</b><span>Phone: +254 700 000 001</span><span>Code: 246810</span></div>
+        <p className="form-privacy"><Icon name="lock" /> Demo verification only. Live SMS will be connected later.</p>
+      </form>
     </div>
+  </div>;
+}
+
+function ClientPortal({ onSignOut }: { onSignOut: () => void }) {
+  const [active, setActive] = useState("Overview");
+  const nav = ["Overview", "My Documents", "Tracking", "Payments", "Messages", "My Profile"];
+  return <div className="client-portal">
+    <aside className="client-sidebar">
+      <Logo />
+      <div className="client-side-label">CLIENT WORKSPACE</div>
+      <nav>{nav.map(item=><button key={item} className={active===item?"active":""} onClick={()=>setActive(item)}><span className="client-nav-dot" />{item}</button>)}</nav>
+      <button className="client-signout" onClick={onSignOut}>Sign out</button>
+    </aside>
+    <main className="client-main">
+      <header className="client-topbar"><div><span className="client-breadcrumb">CLIENT PORTAL / {active.toUpperCase()}</span><h1>{active==="Overview"?"Good morning, Amina.":active}</h1></div><div className="client-user"><span className="client-avatar">AW</span><span><b>Amina Wanjiku</b><small>Client account</small></span></div></header>
+      {active==="Overview" && <>
+        <section className="client-welcome"><div><span className="client-kicker">YOUR TRUSTDOC SPACE</span><h2>Your documents.<br/><em>In safe hands.</em></h2><p>Follow every step of your document journey from one secure place.</p></div><div className="client-welcome-mark"><Icon name="lock" className="size-7"/></div></section>
+        <div className="client-stat-grid"><article><small>ACTIVE REQUESTS</small><strong>01</strong><span>One document in progress</span></article><article><small>COMPLETED DELIVERIES</small><strong>02</strong><span>Successfully handed over</span></article><article><small>OUTSTANDING PAYMENTS</small><strong>KSh 0</strong><span>Nothing due right now</span></article></div>
+        <section className="client-content-grid"><article className="client-card client-document-card"><div className="client-card-head"><div><span className="client-kicker">CURRENT REQUEST</span><h3>National ID collection</h3></div><span className="client-status">In progress</span></div><p className="client-reference">REFERENCE <b>TD-2048</b></p><div className="client-progress"><span style={{width:"58%"}}/></div><div className="client-progress-label"><span>Application monitoring</span><b>58%</b></div><div className="client-timeline"><div className="done"><i/>Request registered</div><div className="done"><i/>Application submitted</div><div className="current"><i/>Document monitoring</div><div><i/>Secure collection and delivery</div></div><button className="client-action" onClick={()=>setActive("Tracking")}>View tracking details <Icon name="arrow"/></button></article><article className="client-card client-profile-card"><span className="client-kicker">YOUR PROFILE</span><div className="client-profile-avatar">AW</div><h3>Amina Wanjiku</h3><p>+254 700 000 001</p><div className="client-profile-line"><span>Account status</span><b>Active</b></div><div className="client-profile-line"><span>Verification</span><b>Demo verified</b></div><button className="client-action" onClick={()=>setActive("My Profile")}>View my profile <Icon name="arrow"/></button></article></section>
+        <section className="client-card client-help"><div><span className="client-kicker">NEED ASSISTANCE?</span><h3>We’re here to help.</h3><p>Send a message to the TrustDoc support team about your document journey.</p></div><button className="button button--primary" onClick={()=>setActive("Messages")}>Open messages <Icon name="arrow"/></button></section>
+      </>}
+      {active==="My Documents" && <section className="client-card client-page-card"><span className="client-kicker">DOCUMENT RECORDS</span><h2>My documents</h2><div className="client-record"><div><b>National ID collection</b><small>TD-2048 · Submitted 12 November 2026</small></div><span className="client-status">In progress</span></div><div className="client-record"><div><b>Good Conduct Certificate</b><small>TD-1982 · Completed 28 October 2026</small></div><span className="client-status client-status--done">Delivered</span></div><div className="client-record"><div><b>Birth Certificate</b><small>TD-1904 · Completed 14 October 2026</small></div><span className="client-status client-status--done">Delivered</span></div></section>}
+      {active==="Tracking" && <section className="client-card client-page-card"><span className="client-kicker">LIVE JOURNEY STATUS</span><h2>Track TD-2048</h2><p className="client-muted">National ID collection · Nairobi</p><div className="client-timeline client-timeline--large"><div className="done"><i/>Request registered <small>12 Nov · 9:15 AM</small></div><div className="done"><i/>Application submitted <small>12 Nov · 10:40 AM</small></div><div className="current"><i/>Document monitoring <small>In progress</small></div><div><i/>Authorized release and secure sealing</div><div><i/>Verified rider assigned</div><div><i/>Recipient OTP and handover</div></div></section>}
+      {active==="Payments" && <section className="client-card client-page-card"><span className="client-kicker">PAYMENT HISTORY</span><h2>Payments</h2><div className="client-record"><div><b>TD-1982 · Delivery completed</b><small>28 October 2026 · M-Pesa</small></div><strong>KSh 350</strong></div><div className="client-record"><div><b>TD-1904 · Delivery completed</b><small>14 October 2026 · M-Pesa</small></div><strong>KSh 350</strong></div><p className="client-muted">No outstanding payment on your current request.</p></section>}
+      {active==="Messages" && <section className="client-card client-page-card"><span className="client-kicker">CLIENT SUPPORT</span><h2>Messages</h2><div className="client-message"><b>TrustDoc Support</b><small>Welcome to your client workspace. Our team will keep you updated as your document progresses.</small></div><textarea className="client-message-input" placeholder="Write a message to TrustDoc support..."/><button className="button button--primary" type="button">Send message</button><p className="client-muted">Messaging is shown in demo mode; live staff inbox connection is pending.</p></section>}
+      {active==="My Profile" && <section className="client-card client-page-card"><span className="client-kicker">PERSONAL INFORMATION</span><h2>My profile</h2><div className="client-profile-detail"><span>Full name</span><b>Amina Wanjiku</b></div><div className="client-profile-detail"><span>Phone number</span><b>+254 700 000 001</b></div><div className="client-profile-detail"><span>Account status</span><b>Active · Demo account</b></div><div className="client-profile-detail"><span>Preferred service area</span><b>Nairobi County</b></div></section>}
+    </main>
   </div>;
 }
 
@@ -249,7 +288,7 @@ function App() {
   const [clientRegistered, setClientRegistered] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
-  const [heroSlide, setHeroSlide] = useState(0);
+  const [heroSlide, setHeroSlide] = useState(0);\n  const [clientPortalOpen, setClientPortalOpen] = useState(false);
 
   useEffect(() => {
     const timer = window.setInterval(
@@ -261,7 +300,7 @@ function App() {
 
   useEffect(() => { const timer = window.setInterval(() => setHeroSlide((v) => (v + 1) % heroSlides.length), 5000); return () => window.clearInterval(timer); }, []);
 
-  const openRegister = () => {
+  if (clientPortalOpen || currentPage === "/client") return <ClientPortal onSignOut={() => { setClientPortalOpen(false); window.history.replaceState({}, "", "/"); window.location.reload(); }} />;\n\n  const openRegister = () => {
     setMenuOpen(false);
     setSignInOpen(false);
     setModalOpen(true);
@@ -822,7 +861,7 @@ function App() {
         </div>
       </footer>
       {modalOpen && <RegisterModal onClose={() => setModalOpen(false)} onRegistered={() => setClientRegistered(true)} />}
-      {signInOpen && <SignInModal onClose={() => setSignInOpen(false)} />}
+      {signInOpen && <SignInModal onClose={() => setSignInOpen(false)} onAuthenticated={() => { setSignInOpen(false); setClientPortalOpen(true); window.history.replaceState({}, "", "/client"); }} />}
       <StaffChat registered={clientRegistered} onRegister={() => { setModalOpen(true); setSignInOpen(false); }} />
     </div>
   );
