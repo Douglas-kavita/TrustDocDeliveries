@@ -1,12 +1,18 @@
 import { FormEvent, useEffect, useState } from "react";
 
-const agentPhoto = "/assets/trustdoc-agent.jpg";
+const agentPhoto = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1400&q=85";
 const envelopePhoto =
   "https://images.unsplash.com/photo-1567473030492-533b30c5494c?auto=format&fit=crop&w=1200&q=85";
 const professionalPhoto =
   "https://images.unsplash.com/photo-1611432579402-7037e3e2c1e4?auto=format&fit=crop&w=1200&q=85";
 const riderPhoto =
-  "https://images.unsplash.com/photo-1550615517-5045b1e87082?auto=format&fit=crop&w=1200&q=85";
+  "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1400&q=85";
+const heroSlides = [
+  { src: agentPhoto, alt: "A professional client service agent", label: "Personal assistance" },
+  { src: professionalPhoto, alt: "A professional helping a client", label: "Guided support" },
+  { src: envelopePhoto, alt: "A carefully prepared document envelope", label: "Sealed documents" },
+  { src: riderPhoto, alt: "A delivery motorcycle ready for a journey", label: "Secure delivery" },
+];
 
 const navItems = [
   ["Home", "home"],
