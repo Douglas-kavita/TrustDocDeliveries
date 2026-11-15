@@ -1,0 +1,10 @@
+{
+  "description": "Manage secure document delivery in Kenya with client registration, secret-code handoffs, real-time tracking, agent and rider information, and delivery updates.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

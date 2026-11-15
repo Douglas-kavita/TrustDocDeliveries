@@ -1,0 +1,1 @@
+Stage 1: corrected JavaScript start/dev/check scripts and excluded local secrets and dependencies. No database, API, B2C, or app integration has been changed or validated. Configure a private .env locally using placeholders in .env.example. Do not publish credentials.

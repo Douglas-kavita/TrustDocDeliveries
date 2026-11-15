@@ -1,0 +1,38 @@
+{
+  "name": "TrustDoc-backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "check": "node --check src/index.js && node --check src/db.js && node --check src/routes/auth.js && node --check src/routes/staff-auth.js && node --check src/routes/cases.js && node --check src/routes/agents.js && node --check src/routes/chat.js && node --check src/routes/complaints.js && node --check scripts/setup-test-staff.js",
+    "db:preflight": "node scripts/db-preflight.js",
+    "db:migrate:stage2": "node scripts/apply-stage2.js",
+    "db:migrate:stage35-auth": "node scripts/apply-stage35-auth.js",
+    "staff:test-setup": "node scripts/setup-test-staff.js"
+  },
+  "dependencies": {
+    "@simplewebauthn/server": "^13.2.2",
+    "africastalking": "^0.6.7",
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.2",
+    "jsonwebtoken": "^9.0.3",
+    "nodemailer": "^10.0.15",
+    "pg": "^8.22.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/node": "^20.10.0",
+    "@types/pg": "^8.10.9",
+    "@types/uuid": "^9.0.7",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
+  }
+}
