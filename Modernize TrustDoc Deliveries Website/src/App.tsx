@@ -332,7 +332,8 @@ function App() {
   const [activeStep, setActiveStep] = useState(0);
   const [heroSlide, setHeroSlide] = useState(0);
   const [clientPortalOpen, setClientPortalOpen] = useState(false);
-  const [clientAuthenticated, setClientAuthenticated] = useState(() => window.localStorage.getItem("trustdoc_client_authenticated") === "true");\n  const [agentAuthenticated, setAgentAuthenticated] = useState(() => window.localStorage.getItem("trustdoc_agent_authenticated") === "true");
+  const [clientAuthenticated, setClientAuthenticated] = useState(() => window.localStorage.getItem("trustdoc_client_authenticated") === "true");
+  const [agentAuthenticated, setAgentAuthenticated] = useState(() => window.localStorage.getItem("trustdoc_agent_authenticated") === "true");
 
   useEffect(() => {
     const timer = window.setInterval(
