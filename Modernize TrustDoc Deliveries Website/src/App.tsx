@@ -423,9 +423,12 @@ function App() {
                 </div>
               </div>
             </div>
-          </div>        </section>
+          </div>
 
         <div className="section-explore"><a className="button button--secondary" href="/how-it-works">Explore How it works <Icon name="arrow" /></a></div>
+        </section>
+
+        
         <section className="security section-pad" id="tracking" data-page-section="tracking">
           <div className="section-shell security__grid">
             <div className="security__visual">
@@ -443,7 +446,7 @@ function App() {
               </div>
             </div>
             <div>
-              <p className="eyebrow eyebrow--gold">03 / Track your delivery</p>
+              <p className="eyebrow eyebrow--gold">02 / Tracking</p>
               <h2>
                 Two secure seals.
                 <br />
@@ -469,16 +472,141 @@ function App() {
                   </span>
                 </div>
               </div>
-              <p className="detail-copy">At every milestone, the status record identifies what has happened, who is responsible for the next action and when the client should expect an update. The rider never opens or inspects the sealed document.</p>
+              
               
             </div>
           </div>
-          <div className="section-explore"><a className="button button--secondary" href="/tracking">Explore Tracking <Icon name="arrow" /></a></div>
-        </section>        <section className="locations section-pad" id="locations" data-page-section="locations">
+
+        <div className="section-explore"><a className="button button--secondary" href="/tracking">Explore Tracking <Icon name="arrow" /></a></div>
+        </section>
+
+        <section className="options section-pad" id="plans" data-page-section="plans">
+          <div className="section-shell">
+            <div className="section-heading center-heading">
+              <p className="eyebrow">04 / Simple pricing</p>
+              <h2>
+                Three clear options.
+                <br />
+                No hidden monitoring fee.
+              </h2>
+            </div>
+            <div className="price-grid">
+              <article>
+                <span>01</span>
+                <p className="price">Free</p>
+                <h3>Register & monitor</h3>
+                <p>Create your record and let an agent follow your document’s progress.</p>
+                <button onClick={openRegister}>
+                  Get started <Icon name="arrow" />
+                </button>
+              </article>
+              <article className="featured">
+                <div className="popular">Most popular</div>
+                <span>02</span>
+                <p className="price">KSh 300</p>
+                <h3>Standard delivery</h3>
+                <p>Same-day delivery to a convenient agreed TrustDoc meeting point.</p>
+                <button onClick={openRegister}>
+                  Choose standard <Icon name="arrow" />
+                </button>
+              </article>
+              <article>
+                <span>03</span>
+                <p className="price">Up to KSh 400</p>
+                <h3>Doorstep delivery</h3>
+                <p>Secure handover at your home, office or another approved location.</p>
+                <button onClick={openRegister}>
+                  Choose doorstep <Icon name="arrow" />
+                </button>
+              </article>
+            </div>
+          </div>
+
+        
+        <div className="section-explore"><a className="button button--secondary" href="/plans">Explore Plan <Icon name="arrow" /></a></div>
+        </section>
+
+        
+        <section className="clients section-pad" id="clients" data-page-section="clients">
+          <div className="section-shell clients__grid">
+            <div>
+              <p className="eyebrow">05 / For clients</p>
+              <h2>Your private code proves it’s really you.</h2>
+              <p className="lead">
+                Once payment is confirmed, you receive a secret delivery code. It is never printed
+                on the envelope and remains known only to you.
+              </p>
+              <div className="code-flow">
+                <div>
+                  <span>1</span>
+                  <p>
+                    <strong>Receive your code</strong>
+                    <small>Sent privately after payment.</small>
+                  </p>
+                </div>
+                <div>
+                  <span>2</span>
+                  <p>
+                    <strong>Meet your TrustDoc agent</strong>
+                    <small>Your document arrives in a sealed envelope.</small>
+                  </p>
+                </div>
+                <div>
+                  <span>3</span>
+                  <p>
+                    <strong>Verify and receive</strong>
+                    <small>
+                      Your code reveals your full name to the agent, then the envelope is handed
+                      over.
+                    </small>
+                  </p>
+                </div>
+              </div>
+              <button className="button button--primary" onClick={openRegister}>
+                Register as a client <Icon name="arrow" />
+              </button>
+              
+            </div>
+            <div className="code-demo">
+              <div className="code-demo__top">
+                <span>
+                  <Icon name="lock" /> Secure recipient check
+                </span>
+                <small>ENCRYPTED</small>
+              </div>
+              <div className="code-demo__body">
+                <p>Enter your 6-digit delivery code</p>
+                <div className="code-digits">
+                  <span>8</span>
+                  <span>3</span>
+                  <span>5</span>
+                  <span>1</span>
+                  <span>9</span>
+                  <span>2</span>
+                </div>
+                <div className="verified">
+                  <Icon name="check" />
+                  <span>
+                    <strong>Identity verified</strong>
+                    <small>Recipient: Amina Wanjiku</small>
+                  </span>
+                </div>
+              </div>
+              <p className="code-demo__footer">
+                Release envelope only after successful verification.
+              </p>
+            </div>
+          </div>
+
+        
+        <div className="section-explore"><a className="button button--secondary" href="/clients">Explore Clients <Icon name="arrow" /></a></div>
+        </section>
+
+        <section className="locations section-pad" id="locations" data-page-section="locations">
           <div className="section-shell">
             <div className="section-heading split-heading light">
               <div>
-                <p className="eyebrow eyebrow--gold">02 / Supported locations</p>
+                <p className="eyebrow eyebrow--gold">03 / Supported locations</p>
                 <h2>
                   Across Nairobi.
                   <br />
@@ -512,7 +640,9 @@ function App() {
             
           </div>
 
-                </section>
+        
+        <div className="section-explore"><a className="button button--secondary button--light" href="/locations">Explore Locations <Icon name="arrow" /></a></div>
+        </section>
 
         <section className="careers section-pad" id="careers" data-page-section="careers">
           <div className="section-shell">
@@ -591,254 +721,10 @@ function App() {
             </div>
             
           </div>
-          <div className="section-explore"><a className="button button--secondary" href="/careers">Explore Careers <Icon name="arrow" /></a></div>
-        </section>        <section className="cta">
-          <div className="section-shell cta__inner">
-            <div>
-              <p className="eyebrow eyebrow--gold">Ready to begin?</p>
-              <h2>
-                One registration.
-                <br />
-                Fewer unnecessary trips.
-              </h2>
-            </div>
-            <button className="button button--light" onClick={openRegister}>
-              Register for free <Icon name="arrow" />
-            </button>
-          </div>
-          <div className="section-explore"><a className="button button--secondary button--light" href="/locations">Explore Locations <Icon name="arrow" /></a></div>
-        </section>        <section className="options section-pad" id="plans" data-page-section="plans">
-          <div className="section-shell">
-            <div className="section-heading center-heading">
-              <p className="eyebrow">04 / Simple pricing</p>
-              <h2>
-                Three clear options.
-                <br />
-                No hidden monitoring fee.
-              </h2>
-            </div>
-            <div className="price-grid">
-              <article>
-                <span>01</span>
-                <p className="price">Free</p>
-                <h3>Register & monitor</h3>
-                <p>Create your record and let an agent follow your document’s progress.</p>
-                <button onClick={openRegister}>
-                  Get started <Icon name="arrow" />
-                </button>
-              </article>
-              <article className="featured">
-                <div className="popular">Most popular</div>
-                <span>02</span>
-                <p className="price">KSh 300</p>
-                <h3>Standard delivery</h3>
-                <p>Same-day delivery to a convenient agreed TrustDoc meeting point.</p>
-                <button onClick={openRegister}>
-                  Choose standard <Icon name="arrow" />
-                </button>
-              </article>
-              <article>
-                <span>03</span>
-                <p className="price">Up to KSh 400</p>
-                <h3>Doorstep delivery</h3>
-                <p>Secure handover at your home, office or another approved location.</p>
-                <button onClick={openRegister}>
-                  Choose doorstep <Icon name="arrow" />
-                </button>
-              </article>
-            </div>
-          </div>
-          <div className="section-explore"><a className="button button--secondary" href="/plans">Explore Plan <Icon name="arrow" /></a></div>
-        </section>        <section className="clients section-pad" id="clients" data-page-section="clients">
-          <div className="section-shell clients__grid">
-            <div>
-              <p className="eyebrow">05 / For clients</p>
-              <h2>Your private code proves it’s really you.</h2>
-              <p className="lead">
-                Once payment is confirmed, you receive a secret delivery code. It is never printed
-                on the envelope and remains known only to you.
-              </p>
-              <div className="code-flow">
-                <div>
-                  <span>1</span>
-                  <p>
-                    <strong>Receive your code</strong>
-                    <small>Sent privately after payment.</small>
-                  </p>
-                </div>
-                <div>
-                  <span>2</span>
-                  <p>
-                    <strong>Meet your TrustDoc agent</strong>
-                    <small>Your document arrives in a sealed envelope.</small>
-                  </p>
-                </div>
-                <div>
-                  <span>3</span>
-                  <p>
-                    <strong>Verify and receive</strong>
-                    <small>
-                      Your code reveals your full name to the agent, then the envelope is handed
-                      over.
-                    </small>
-                  </p>
-                </div>
-              </div>
-              <button className="button button--primary" onClick={openRegister}>
-                Register as a client <Icon name="arrow" />
-              </button>
-              
-            </div>
-            <div className="code-demo">
-              <div className="code-demo__top">
-                <span>
-                  <Icon name="lock" /> Secure recipient check
-                </span>
-                <small>ENCRYPTED</small>
-              </div>
-              <div className="code-demo__body">
-                <p>Enter your 6-digit delivery code</p>
-                <div className="code-digits">
-                  <span>8</span>
-                  <span>3</span>
-                  <span>5</span>
-                  <span>1</span>
-                  <span>9</span>
-                  <span>2</span>
-                </div>
-                <div className="verified">
-                  <Icon name="check" />
-                  <span>
-                    <strong>Identity verified</strong>
-                    <small>Recipient: Amina Wanjiku</small>
-                  </span>
-                </div>
-              </div>
-              <p className="code-demo__footer">
-                Release envelope only after successful verification.
-              </p>
-            </div>
-          </div>
 
-                </section>
-
-        <section className="locations section-pad" id="locations" data-page-section="locations">
-          <div className="section-shell">
-            <div className="section-heading split-heading light">
-              <div>
-                <p className="eyebrow eyebrow--gold">02 / Supported locations</p>
-                <h2>
-                  Across Nairobi.
-                  <br />
-                  On your route.
-                </h2>
-              </div>
-              <p>
-                Collection points and flexible delivery routes designed around where you live and
-                work.
-              </p>
-            </div>
-            <div className="location-grid">
-              {[
-                "Nairobi CBD",
-                "Eastlands",
-                "Westlands",
-                "Kasarani",
-                "Lang’ata",
-                "Kiambu routes",
-              ].map((location, index) => (
-                <article key={location}>
-                  <span>0{index + 1}</span>
-                  <Icon name="pin" />
-                  <div>
-                    <h3>{location}</h3>
-                    <p>{index % 2 ? "Home & office delivery" : "Collection & delivery"}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-            
-          </div>
-          <div className="section-explore"><a className="button button--secondary" href="/clients">Explore Clients <Icon name="arrow" /></a></div>
-        </section>        <section className="careers section-pad" id="careers" data-page-section="careers">
-          <div className="section-shell">
-            <div className="section-heading center-heading">
-              <p className="eyebrow">06 / Careers at TrustDoc</p>
-              <h2>
-                Build trust.
-                <br />
-                Move Kenya forward.
-              </h2>
-              <p>
-                Join a team that makes important document journeys simpler, safer and more human.
-              </p>
-            </div>
-            <div className="career-grid">
-              <article className="career-card">
-                <div className="career-card__photo">
-                  <img src={professionalPhoto} alt="Professional Black African TrustDoc agent" />
-                  <span>Agent</span>
-                </div>
-                <div className="career-card__content">
-                  <div>
-                    <p className="eyebrow">Client success & operations</p>
-                    <h3>TrustDoc Agent</h3>
-                  </div>
-                  <p>
-                    Register clients, monitor documents, send timely notifications, collect
-                    application slips and make sure every delivery is completed successfully.
-                  </p>
-                  <ul>
-                    <li>
-                      <Icon name="check" /> Competitive pay rates
-                    </li>
-                    <li>
-                      <Icon name="check" /> Structured training and support
-                    </li>
-                    <li>
-                      <Icon name="check" /> Meaningful client-facing work
-                    </li>
-                  </ul>
-                  <a href="mailto:careers@trustdoc.co.ke?subject=TrustDoc Agent application">
-                    Apply as an agent <Icon name="arrow" />
-                  </a>
-                </div>
-              </article>
-              <article className="career-card">
-                <div className="career-card__photo">
-                  <img src={riderPhoto} alt="Black African delivery rider on a motorcycle" />
-                  <span>Rider</span>
-                </div>
-                <div className="career-card__content">
-                  <div>
-                    <p className="eyebrow">Secure logistics</p>
-                    <h3>Delivery Rider</h3>
-                  </div>
-                  <p>
-                    Use your own transport to move sealed document envelopes safely. The envelope is
-                    released only when the client provides the correct private code.
-                  </p>
-                  <ul>
-                    <li>
-                      <Icon name="check" /> Self-transport delivery routes
-                    </li>
-                    <li>
-                      <Icon name="check" /> Sealed envelopes only
-                    </li>
-                    <li>
-                      <Icon name="check" /> Code-confirmed handovers
-                    </li>
-                  </ul>
-                  <a href="mailto:careers@trustdoc.co.ke?subject=TrustDoc Rider application">
-                    Apply as a rider <Icon name="arrow" />
-                  </a>
-                </div>
-              </article>
-            </div>
-            <div className="section-explore"><a className="button button--secondary" href="/careers">Explore Careers <Icon name="arrow" /></a></div>
-          </div>
-<div className="section-explore"><a className="button button--secondary" href="/careers">Explore Careers <Icon name="arrow" /></a></div>
-                </section>
+        
+        <div className="section-explore"><a className="button button--secondary" href="/careers">Explore Careers <Icon name="arrow" /></a></div>
+        </section>
 
         <section className="cta">
           <div className="section-shell cta__inner">
