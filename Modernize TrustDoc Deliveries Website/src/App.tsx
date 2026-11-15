@@ -241,6 +241,8 @@ function App() {
     return () => window.clearInterval(timer);
   }, []);
 
+  useEffect(() => { const timer = window.setInterval(() => setHeroSlide((v) => (v + 1) % heroSlides.length), 5000); return () => window.clearInterval(timer); }, []);
+
   const openRegister = () => {
     setMenuOpen(false);
     setModalOpen(true);
@@ -326,9 +328,7 @@ function App() {
               </div>
             </div>
             <div className="hero__visual reveal reveal--delay">
-              <div className="photo-main">
-                <img src={agentPhoto} alt="Friendly TrustDoc agent ready to help" />
-              </div>
+              <div className="photo-main hero-carousel">{heroSlides.map((slide, index) => <img key={slide.src} src={slide.src} alt={slide.alt} className={heroSlide === index ? "is-active" : ""} />)}<div className="hero-carousel__caption">{heroSlides[heroSlide].label}</div><div className="hero-carousel__dots">{heroSlides.map((slide, index) => <button key={slide.src} type="button" className={heroSlide === index ? "active" : ""} aria-label={"Show image " + (index + 1)} onClick={() => setHeroSlide(index)} />)}</div></div>
               <div className="floating-card floating-card--status">
                 <span className="pulse-dot" />
                 <div>
