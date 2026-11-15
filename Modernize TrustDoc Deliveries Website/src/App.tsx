@@ -355,7 +355,7 @@ function App() {
   const pageMap: Record<string, string> = { "/how-it-works": "how-it-works", "/tracking": "tracking", "/locations": "locations", "/plans": "plans", "/clients": "clients", "/careers": "careers" };
   const [modalOpen, setModalOpen] = useState(false);
   const [signInOpen, setSignInOpen] = useState(false);
-  const [clientRegistered, setClientRegistered] = useState(false);
+  const [clientRegistered, setClientRegistered] = useState(() => window.localStorage.getItem("trustdoc_client_registered") === "true");
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const [heroSlide, setHeroSlide] = useState(0);
@@ -943,7 +943,7 @@ function App() {
           </div>
         </div>
       </footer>
-      {modalOpen && <RegisterModal onClose={() => setModalOpen(false)} onRegistered={() => setClientRegistered(true)} />}
+      {modalOpen && <RegisterModal onClose={() => setModalOpen(false)} onRegistered={() => { window.localStorage.setItem("trustdoc_client_registered", "true"); setClientRegistered(true); }} />}
       {signInOpen && <SignInModal onClose={() => setSignInOpen(false)} onAuthenticated={() => { window.localStorage.setItem("trustdoc_client_authenticated", "true"); setClientAuthenticated(true); setSignInOpen(false); setClientPortalOpen(true); window.history.replaceState({}, "", "/client"); }} />}
       <StaffChat registered={clientAuthenticated || clientRegistered} onRegister={() => { setModalOpen(true); setSignInOpen(false); }} />
     </div>
