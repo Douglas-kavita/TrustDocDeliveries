@@ -190,6 +190,7 @@ function RegisterModal({ onClose, onRegistered }: { onClose: () => void; onRegis
               </p>
             </form>
           </>
+        )}
       </div>
     </div>
   );
