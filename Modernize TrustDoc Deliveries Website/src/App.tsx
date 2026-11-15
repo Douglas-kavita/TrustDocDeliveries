@@ -480,6 +480,48 @@ function App() {
         <div className="section-explore"><a className="button button--secondary" href="/tracking">Explore Tracking <Icon name="arrow" /></a></div>
         </section>
 
+        <section className="locations section-pad" id="locations" data-page-section="locations">
+          <div className="section-shell">
+            <div className="section-heading split-heading light">
+              <div>
+                <p className="eyebrow eyebrow--gold">03 / Supported locations</p>
+                <h2>
+                  Across Nairobi.
+                  <br />
+                  On your route.
+                </h2>
+              </div>
+              <p>
+                Collection points and flexible delivery routes designed around where you live and
+                work.
+              </p>
+            </div>
+            <div className="location-grid">
+              {[
+                "Nairobi CBD",
+                "Eastlands",
+                "Westlands",
+                "Kasarani",
+                "Lang’ata",
+                "Kiambu routes",
+              ].map((location, index) => (
+                <article key={location}>
+                  <span>0{index + 1}</span>
+                  <Icon name="pin" />
+                  <div>
+                    <h3>{location}</h3>
+                    <p>{index % 2 ? "Home & office delivery" : "Collection & delivery"}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+            
+          </div>
+
+        
+        <div className="section-explore"><a className="button button--secondary button--light" href="/locations">Explore Locations <Icon name="arrow" /></a></div>
+        </section>
+
         <section className="options section-pad" id="plans" data-page-section="plans">
           <div className="section-shell">
             <div className="section-heading center-heading">
@@ -602,47 +644,7 @@ function App() {
         <div className="section-explore"><a className="button button--secondary" href="/clients">Explore Clients <Icon name="arrow" /></a></div>
         </section>
 
-        <section className="locations section-pad" id="locations" data-page-section="locations">
-          <div className="section-shell">
-            <div className="section-heading split-heading light">
-              <div>
-                <p className="eyebrow eyebrow--gold">03 / Supported locations</p>
-                <h2>
-                  Across Nairobi.
-                  <br />
-                  On your route.
-                </h2>
-              </div>
-              <p>
-                Collection points and flexible delivery routes designed around where you live and
-                work.
-              </p>
-            </div>
-            <div className="location-grid">
-              {[
-                "Nairobi CBD",
-                "Eastlands",
-                "Westlands",
-                "Kasarani",
-                "Lang’ata",
-                "Kiambu routes",
-              ].map((location, index) => (
-                <article key={location}>
-                  <span>0{index + 1}</span>
-                  <Icon name="pin" />
-                  <div>
-                    <h3>{location}</h3>
-                    <p>{index % 2 ? "Home & office delivery" : "Collection & delivery"}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-            
-          </div>
 
-        
-        <div className="section-explore"><a className="button button--secondary button--light" href="/locations">Explore Locations <Icon name="arrow" /></a></div>
-        </section>
 
         <section className="careers section-pad" id="careers" data-page-section="careers">
           <div className="section-shell">
