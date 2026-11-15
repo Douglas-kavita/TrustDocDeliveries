@@ -345,7 +345,9 @@ function App() {
 
   useEffect(() => { const timer = window.setInterval(() => setHeroSlide((v) => (v + 1) % heroSlides.length), 5000); return () => window.clearInterval(timer); }, []);
 
-  if (currentPage === "/agent/login" && !agentAuthenticated) return <AgentLogin onAuthenticated={() => { setAgentAuthenticated(true); window.history.replaceState({}, "", "/agent"); }} />;\n  if ((currentPage === "/agent" || currentPage === "/agent/login") && agentAuthenticated) return <AgentPortal onSignOut={() => { localStorage.removeItem("trustdoc_agent_authenticated"); setAgentAuthenticated(false); window.history.replaceState({}, "", "/agent/login"); }} />;\n  if ((clientPortalOpen || currentPage === "/client") && clientAuthenticated) return <ClientPortal onSignOut={() => { window.localStorage.removeItem("trustdoc_client_authenticated"); setClientAuthenticated(false); setClientPortalOpen(false); window.history.replaceState({}, "", "/"); window.location.reload(); }} />;
+  if (currentPage === "/agent/login" && !agentAuthenticated) return <AgentLogin onAuthenticated={() => { setAgentAuthenticated(true); window.history.replaceState({}, "", "/agent"); }} />;
+  if ((currentPage === "/agent" || currentPage === "/agent/login") && agentAuthenticated) return <AgentPortal onSignOut={() => { localStorage.removeItem("trustdoc_agent_authenticated"); setAgentAuthenticated(false); window.history.replaceState({}, "", "/agent/login"); }} />;
+  if ((clientPortalOpen || currentPage === "/client") && clientAuthenticated) return <ClientPortal onSignOut={() => { window.localStorage.removeItem("trustdoc_client_authenticated"); setClientAuthenticated(false); setClientPortalOpen(false); window.history.replaceState({}, "", "/"); window.location.reload(); }} />;
 
   const openRegister = () => {
     setMenuOpen(false);
