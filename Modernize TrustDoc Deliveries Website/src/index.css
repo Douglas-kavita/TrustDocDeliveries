@@ -1838,10 +1838,9 @@ footer small {
 .signin-notice{margin-top:24px;padding:20px;border:1px solid var(--line);border-radius:16px;background:#fff}
 .signin-notice strong{color:var(--maroon)}
 .signin-notice p{margin:10px 0 18px;color:var(--muted);font-size:12px;line-height:1.7}
-.staff-chat-launch{position:fixed;right:26px;bottom:25px;z-index:80;width:76px;height:76px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:3px solid rgba(255,255,255,.9);border-radius:50%;color:#fff;background:var(--maroon);box-shadow:0 12px 35px rgba(55,0,18,.3);cursor:pointer;transition:transform .2s,box-shadow .2s}
+.staff-chat-launch{position:fixed;right:28px;bottom:28px;z-index:80;width:58px;height:58px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.78);border-radius:50%;color:#fff;background:var(--maroon);box-shadow:0 8px 24px rgba(55,0,18,.24);cursor:pointer;transition:transform .2s,box-shadow .2s}
 .staff-chat-launch:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(55,0,18,.38)}
-.staff-chat-launch span{font-size:25px;line-height:1}
-.staff-chat-launch small{font-size:8px;font-weight:800;letter-spacing:.02em}
+.staff-chat-launch svg{width:23px;height:23px;stroke-width:1.8}
 .staff-chat{position:fixed;right:26px;bottom:116px;z-index:81;width:min(360px,calc(100vw - 32px));overflow:hidden;border:1px solid rgba(102,2,31,.14);border-radius:22px;background:#fffaf4;box-shadow:0 22px 65px rgba(32,0,12,.24);animation:modalIn .22s ease both}
 .staff-chat__head{display:flex;align-items:center;justify-content:space-between;padding:17px 20px;color:#fff;background:var(--maroon)}
 .staff-chat__head b,.staff-chat__head small{display:block}
@@ -1853,7 +1852,7 @@ footer small {
 .staff-chat__body textarea{min-height:110px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--ink);background:white;font:inherit;font-size:12px}
 .staff-chat__welcome{padding:12px;border-radius:12px;background:#f6eee8}
 .staff-chat__notice{color:var(--muted);font-size:10px;line-height:1.5}
-@media(max-width:560px){.staff-chat-launch{right:16px;bottom:16px;width:68px;height:68px}.staff-chat{right:16px;bottom:98px}}
+@media(max-width:560px){.staff-chat-launch{right:16px;bottom:16px;width:54px;height:54px}.staff-chat{right:16px;bottom:82px}}
 
 
 /* Client portal demo workspace */
