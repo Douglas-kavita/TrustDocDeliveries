@@ -346,7 +346,7 @@ function StaffChat({ registered, onRegister }: { registered: boolean; onRegister
         <><p className="staff-chat__welcome">You can now start a support conversation.</p><textarea value={message} onChange={e=>setMessage(e.target.value)} placeholder="Write a message to TrustDoc staff..." /><button className="button button--primary button--wide" onClick={()=>{if(message.trim()){setNotice("Your message is ready. Staff messaging will be connected to the secure client inbox.");setMessage("");}}}>Send message</button>{notice && <small className="staff-chat__notice">{notice}</small>}</>}
       </div>
     </div>}
-    <button className="staff-chat-launch" onClick={()=>setOpen(v=>!v)} aria-label="Chat with TrustDoc staff"><span>✉</span><small>Chat with us</small></button>
+    <button className="staff-chat-launch" onClick={()=>setOpen(v=>!v)} aria-label="Chat with TrustDoc staff"><Icon name="headset" /></button>
   </>;
 }
 
