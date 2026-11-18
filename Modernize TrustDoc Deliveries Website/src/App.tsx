@@ -47,10 +47,16 @@ const Icon = ({
   name,
   className = "size-5",
 }: {
-  name: "arrow" | "check" | "lock" | "bell" | "pin" | "route" | "menu" | "close";
+  name: "chat" | "arrow" | "check" | "lock" | "bell" | "pin" | "route" | "menu" | "close";
   className?: string;
 }) => {
   const paths = {
+    chat: (
+      <>
+        <path d="M5 5.5h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-4 2v-4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z" fill="white" stroke="white" />
+        <path d="M7 12.5c2.8 3 7.2 3 10 0" stroke="#66021f" strokeWidth="1.7" />
+      </>
+    ),
     arrow: <path d="m5 12 14 0m-5-5 5 5-5 5" />,
     check: <path d="m5 12 4 4L19 6" />,
     lock: (
@@ -346,7 +352,7 @@ function StaffChat({ registered, onRegister }: { registered: boolean; onRegister
         <><p className="staff-chat__welcome">You can now start a support conversation.</p><textarea value={message} onChange={e=>setMessage(e.target.value)} placeholder="Write a message to TrustDoc staff..." /><button className="button button--primary button--wide" onClick={()=>{if(message.trim()){setNotice("Your message is ready. Staff messaging will be connected to the secure client inbox.");setMessage("");}}}>Send message</button>{notice && <small className="staff-chat__notice">{notice}</small>}</>}
       </div>
     </div>}
-    <button className="staff-chat-launch" onClick={()=>setOpen(v=>!v)} aria-label="Chat with TrustDoc staff"><Icon name="headset" /></button>
+    <button className="staff-chat-launch" onClick={()=>setOpen(v=>!v)} aria-label="Chat with TrustDoc staff"><Icon name="chat" /></button>
   </>;
 }
 
