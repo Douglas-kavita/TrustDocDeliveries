@@ -1,17 +1,14 @@
 import { FormEvent, useEffect, useState } from "react";
 
-const agentPhoto = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1400&q=85";
-const envelopePhoto =
-  "https://images.unsplash.com/photo-1567473030492-533b30c5494c?auto=format&fit=crop&w=1200&q=85";
-const professionalPhoto =
-  "https://images.unsplash.com/photo-1611432579402-7037e3e2c1e4?auto=format&fit=crop&w=1200&q=85";
-const riderPhoto =
-  "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1400&q=85";
+const agentPhoto = "https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/sites/2147544594/images/mv0DhXfGS5aNbn4zy8Gu_file.jpg";
+const envelopePhoto = "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/63881944273159.580e203539e45.jpg";
+const professionalPhoto = "https://enterpriseceo.africa/storage/2026/05/ChatGPT-Image-May-3-2026-10_44_39-PM.png";
+const riderPhoto = "https://wwise.co.za/wp-content/uploads/2023/02/Sibongile-credibility.png";
 const heroSlides = [
-  { src: agentPhoto, alt: "A professional client service agent", label: "Personal assistance" },
-  { src: professionalPhoto, alt: "A professional helping a client", label: "Guided support" },
-  { src: envelopePhoto, alt: "A carefully prepared document envelope", label: "Sealed documents" },
-  { src: riderPhoto, alt: "A delivery motorcycle ready for a journey", label: "Secure delivery" },
+  { src: agentPhoto, alt: "Black Kenyan professional in a burgundy blazer and white shirt", label: "Personal assistance" },
+  { src: professionalPhoto, alt: "Black professional woman in a burgundy suit in her office", label: "Guided support" },
+  { src: envelopePhoto, alt: "White document envelope with a deep maroon lining and matching stationery", label: "Sealed documents" },
+  { src: riderPhoto, alt: "Black professional woman in a maroon jacket and white shirt", label: "Trusted professionals" },
 ];
 
 const navItems = [["Home", "/"], ["How it works", "/how-it-works"], ["Tracking", "/tracking"], ["Locations", "/locations"], ["Plans", "/plans"], ["Clients", "/clients"], ["Careers", "/careers"]];
