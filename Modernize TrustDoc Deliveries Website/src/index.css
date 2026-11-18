@@ -1950,3 +1950,15 @@ footer small {
 .rider-job-filters{display:flex;gap:14px;flex-wrap:wrap;margin:22px 0}.rider-job-filters label{display:grid;gap:7px;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.rider-job-filters select,.rider-job-row select{padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--maroon);font:inherit;font-size:11px}
 .rider-job-row{display:grid;grid-template-columns:minmax(180px,1.5fr) minmax(110px,.7fr) auto auto;align-items:center;gap:15px;padding:17px 0;border-top:1px solid var(--line)}.rider-job-main{display:grid;gap:5px}.rider-job-main b{color:var(--maroon);font-size:12px}.rider-job-main span,.rider-job-time span{font-size:11px}.rider-job-main small{color:var(--muted);font-size:10px}.rider-job-time{display:grid;gap:5px;font-size:10px}.rider-job-time b{color:var(--ink)}.rider-job-fee{color:var(--maroon);font-size:12px;white-space:nowrap}.rider-job-row select{min-width:130px}.rider-area-rank{display:grid;grid-template-columns:38px 1fr auto;align-items:center;gap:12px;padding:15px 0;border-top:1px solid var(--line)}.rider-area-rank>b{color:#a77b36}.rider-area-rank span{font-size:12px;font-weight:700}.rider-area-rank strong{color:var(--maroon);font-size:11px}.rider-subheading{margin:28px 0 12px;color:var(--maroon);font-size:16px}.rider-profile-shortcut span{background:linear-gradient(145deg,#5a1730,#210914)}
 @media(max-width:900px){.rider-job-row{grid-template-columns:1fr 1fr;gap:10px}.rider-job-main{grid-column:1/-1}.rider-job-row select{width:100%}}@media(max-width:600px){.rider-job-filters label,.rider-job-filters select{width:100%}.rider-job-row{grid-template-columns:1fr auto}.rider-job-row select{grid-column:1/-1}.rider-job-fee{justify-self:end}}
+
+/* TrustDoc map-pin / verified-lock identity and profile image controls */
+.logo__mark{width:42px;height:42px;display:grid;place-items:center;color:var(--maroon);flex:0 0 42px}
+.logo__mark svg{width:100%;height:100%;overflow:visible}
+.logo--light .logo__mark{color:#fff}
+.client-avatar{overflow:hidden}
+.client-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.profile-photo-editor{display:flex;align-items:center;gap:18px;margin:18px 0 24px;padding:18px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.profile-photo-editor>img{width:88px;height:88px;object-fit:cover;border-radius:50%;border:3px solid #ead5c6;box-shadow:0 5px 16px rgba(60,0,20,.12)}
+.profile-photo-editor label{position:relative;overflow:hidden;cursor:pointer}
+.profile-photo-editor input[type=file]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+@media(max-width:520px){.profile-photo-editor{align-items:flex-start;flex-direction:column}}
