@@ -1,14 +1,14 @@
 import { FormEvent, useEffect, useState } from "react";
 
-const agentPhoto = "https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/sites/2147544594/images/mv0DhXfGS5aNbn4zy8Gu_file.jpg";
-const envelopePhoto = "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/63881944273159.580e203539e45.jpg";
-const professionalPhoto = "https://enterpriseceo.africa/storage/2026/05/ChatGPT-Image-May-3-2026-10_44_39-PM.png";
-const riderPhoto = "https://wwise.co.za/wp-content/uploads/2023/02/Sibongile-credibility.png";
+const agentPhoto = "/trustdoc-assets/hero-agent.jpg";
+const envelopePhoto = "/trustdoc-assets/hero-envelope.jpg";
+const professionalPhoto = "/trustdoc-assets/hero-man.jpg";
+const riderPhoto = "/trustdoc-assets/hero-rider.jpg";
 const heroSlides = [
-  { src: agentPhoto, alt: "Black Kenyan professional in a burgundy blazer and white shirt", label: "Personal assistance" },
-  { src: professionalPhoto, alt: "Black professional woman in a burgundy suit in her office", label: "Guided support" },
-  { src: envelopePhoto, alt: "White document envelope with a deep maroon lining and matching stationery", label: "Sealed documents" },
-  { src: riderPhoto, alt: "Black professional woman in a maroon jacket and white shirt", label: "Trusted professionals" },
+  { src: professionalPhoto, alt: "Smiling Black TrustDoc professional in maroon and white holding a document", label: "Your documents. Our priority." },
+  { src: agentPhoto, alt: "Welcoming Black female TrustDoc agent in maroon and white holding a sealed envelope", label: "Professional support at every step." },
+  { src: envelopePhoto, alt: "TrustDoc sealed document envelope in maroon and white", label: "Sealed. Tracked. Delivered." },
+  { src: riderPhoto, alt: "Smiling Black male TrustDoc delivery rider in maroon and white", label: "Fast and reliable deliveries." },
 ];
 
 const navItems = [["Home", "/"], ["How it works", "/how-it-works"], ["Tracking", "/tracking"], ["Locations", "/locations"], ["Plans", "/plans"], ["Clients", "/clients"], ["Careers", "/careers"]];
@@ -102,24 +102,8 @@ const Icon = ({
 
 function Logo({ light = false }: { light?: boolean }) {
   return (
-    <a
-      href="/"
-      className={`logo ${light ? "logo--light" : ""}`}
-      aria-label="TrustDocDeliveries home"
-    >
-      <span className="logo__mark">
-        <svg viewBox="0 0 100 100" aria-hidden="true">
-          <path d="M50 5C26 5 9 23 9 46c0 27 41 57 41 57s41-30 41-57C91 23 74 5 50 5Z" fill="none" stroke="currentColor" strokeWidth="9"/>
-          <path d="M35 43V34a15 15 0 0 1 30 0v9" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round"/>
-          <rect x="27" y="41" width="46" height="39" rx="7" fill="currentColor"/>
-          <path d="m37 60 9 9 19-20" fill="none" stroke="white" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M8 83h19l-9 12H2Zm65 0h19l9 12H64ZM29 84l17 13h8L39 84Zm42 0L54 97h-8l15-13Z" fill="currentColor"/>
-        </svg>
-      </span>
-      <span>
-        <strong>TrustDocDeliveries</strong>
-        <small>Handled with certainty</small>
-      </span>
+    <a href="/" className={`logo ${light ? "logo--light" : ""}`} aria-label="TrustDoc Deliveries home">
+      <img className="logo__image" src="/trustdoc-assets/trustdoc-logo.jpg" alt="TrustDoc — Secure. Deliver. Trusted." />
     </a>
   );
 }
@@ -482,7 +466,7 @@ function App() {
               </div>
             </div>
             <div className="hero__visual reveal reveal--delay">
-              <div className="photo-main hero-carousel">{heroSlides.map((slide, index) => <img key={slide.src} src={slide.src} alt={slide.alt} className={heroSlide === index ? "is-active" : ""} />)}<div className="hero-carousel__caption">{heroSlides[heroSlide].label}</div><div className="hero-carousel__dots">{heroSlides.map((slide, index) => <button key={slide.src} type="button" className={heroSlide === index ? "active" : ""} aria-label={"Show image " + (index + 1)} onClick={() => setHeroSlide(index)} />)}</div></div>
+              <div className="photo-main hero-carousel">{heroSlides.map((slide, index) => <img key={slide.src} src={slide.src} alt={slide.alt} className={heroSlide === index ? "is-active" : ""} />)}<div className="hero-carousel__dots">{heroSlides.map((slide, index) => <button key={slide.src} type="button" className={heroSlide === index ? "active" : ""} aria-label={"Show image " + (index + 1)} onClick={() => setHeroSlide(index)} />)}</div></div>
               <div className="floating-card floating-card--status">
                 <span className="pulse-dot" />
                 <div>
