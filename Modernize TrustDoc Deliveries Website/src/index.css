@@ -1964,15 +1964,20 @@ footer small {
 @media(max-width:520px){.profile-photo-editor{align-items:flex-start;flex-direction:column}}
 
 /* Use the supplied original TrustDoc logo image consistently across header, footer and portals. */
-.logo{display:flex;align-items:center;min-width:0}
-.logo__image{display:block;width:clamp(178px,19vw,238px);height:auto;max-height:76px;object-fit:contain;object-position:left center}
+.logo{display:flex;align-items:center;gap:10px;min-width:0;text-decoration:none}
+.logo__image{display:block;width:54px;height:54px;object-fit:contain;flex:0 0 auto}
+.logo__wordmark{display:flex;flex-direction:column;line-height:1.02;letter-spacing:.01em}
+.logo__wordmark strong{font-family:inherit;font-size:25px;font-weight:800;color:#750d26;letter-spacing:-.045em}
+.logo__wordmark small{margin-top:5px;font-size:10px;font-weight:800;letter-spacing:.24em;color:#8f1014}
 .logo--light .logo__image{filter:brightness(0) invert(1)}
-.client-sidebar .logo__image{width:190px;max-height:62px}
-.agent-login-card .logo__image{width:220px;max-height:70px}
+.logo--light .logo__wordmark strong,.logo--light .logo__wordmark small{color:#fff}
+.client-sidebar .logo__image{width:46px;height:46px}
+.client-sidebar .logo__wordmark strong{font-size:21px}
+.agent-login-card .logo__image{width:52px;height:52px}
 .hero-carousel{position:relative;overflow:hidden;isolation:isolate}
 .hero-carousel>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;opacity:0;transition:opacity .65s ease,transform 5s ease;transform:scale(1.025)}
 .hero-carousel>img.is-active{opacity:1;transform:scale(1)}
 .hero-carousel__dots{position:absolute;z-index:3;left:50%;bottom:14px;display:flex;gap:9px;transform:translateX(-50%)}
 .hero-carousel__dots button{width:8px;height:8px;padding:0;border:1px solid white;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:0 1px 5px rgba(0,0,0,.25)}
 .hero-carousel__dots button.active{background:#fff;transform:scale(1.2)}
-@media(max-width:700px){.logo__image{width:170px;max-height:56px}.client-sidebar .logo__image{width:165px}}
+@media(max-width:700px){.logo__image{width:46px;height:46px}.logo__wordmark strong{font-size:22px}.client-sidebar .logo__image{width:42px;height:42px}}

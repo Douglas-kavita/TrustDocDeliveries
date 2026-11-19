@@ -103,7 +103,8 @@ const Icon = ({
 function Logo({ light = false }: { light?: boolean }) {
   return (
     <a href="/" className={`logo ${light ? "logo--light" : ""}`} aria-label="TrustDoc Deliveries home">
-      <img className="logo__image" src="/trustdoc-assets/trustdoc-logo.png" alt="TrustDoc — Secure. Deliver. Trusted." />
+      <img className="logo__image" src="/trustdoc-assets/trustdoc-pin-logo.svg" alt="" />
+      <span className="logo__wordmark"><strong>TrustDoc</strong><small>DELIVERIES</small></span>
     </a>
   );
 }
