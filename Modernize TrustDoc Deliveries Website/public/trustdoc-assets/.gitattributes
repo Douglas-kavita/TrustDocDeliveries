@@ -1,0 +1,5 @@
+# Keep TrustDoc website images as normal Git files, not Git LFS
+*.jpg  -filter -diff -merge -text
+*.jpeg -filter -diff -merge -text
+*.png  -filter -diff -merge -text
+*.webp -filter -diff -merge -text
