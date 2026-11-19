@@ -1,9 +1,9 @@
 import { FormEvent, useEffect, useState } from "react";
 
-const agentPhoto = "/trustdoc-assets/hero-agent.jpg";
+const agentPhoto = "/trustdoc-assets/agent-portrait.svg";
 const envelopePhoto = "/trustdoc-assets/hero-envelope.jpg";
-const professionalPhoto = "/trustdoc-assets/hero-man.jpg";
-const riderPhoto = "/trustdoc-assets/hero-rider.jpg";
+const professionalPhoto = "/trustdoc-assets/homepage-hero.svg";
+const riderPhoto = "/trustdoc-assets/rider-portrait.svg";
 const heroSlides = [
   { src: professionalPhoto, alt: "Smiling Black TrustDoc professional in maroon and white holding a document", label: "Your documents. Our priority." },
   { src: agentPhoto, alt: "Welcoming Black female TrustDoc agent in maroon and white holding a sealed envelope", label: "Professional support at every step." },
@@ -805,7 +805,7 @@ function App() {
             <div className="career-grid">
               <article className="career-card">
                 <div className="career-card__photo">
-                  <img src={professionalPhoto} alt="Professional Black African TrustDoc agent" />
+                  <img src={agentPhoto} alt="TrustDoc field operations agent in maroon and white uniform" />
                   <span>Agent</span>
                 </div>
                 <div className="career-card__content">
