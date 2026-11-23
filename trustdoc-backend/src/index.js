@@ -21,7 +21,11 @@ app.get('/health/db', async (req, res) => {
     await pool.query('SELECT 1');
     res.json({ status: 'ok', database: 'connected' });
   } catch (err) {
-    console.error('Database health check failed:', err.message);
+    console.error('Database health check failed:', {
+      code: err.code || 'NO_PG_ERROR_CODE',
+      message: err.message || 'Unknown database connection error',
+      severity: err.severity || null,
+    });
     res.status(503).json({ status: 'unavailable', database: 'disconnected' });
   }
 });
